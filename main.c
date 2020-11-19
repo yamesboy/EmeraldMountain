@@ -16,8 +16,8 @@
 #include <stdio.h>
 
 //define macro for setting foreground and background colors
-# define FOREGROUND GRAPHICS_COLOR_YELLOW
-# define BACKGROUND GRAPHICS_COLOR_BLACK
+# define FOREGROUND GRAPHICS_COLOR_WHITE
+# define BACKGROUND GRAPHICS_COLOR_BROWN
 
 //ADC results buffer
 static uint16_t resultsBuffer[2];
@@ -121,9 +121,26 @@ void InitJoyStick(void){
  * Creates a circle of radius 25, moves with the joystick
  */
 int main(void){
-    //initialize g context
+    extern Graphics_Image max88PP_UNCOMP;
+    extern tImage  BasicMap00004BPP_UNCOMP;
+    extern tImage  Emerald100004BPP_UNCOMP;
+    extern tImage  MinerBig00004BPP_UNCOMP;
+    extern tImage  SlimeBig00004BPP_UNCOMP;
+
+	//initialize g context
     Init_Graph(&g_sContext);
 
+    Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
+
+    Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
+    Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
+    Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
+
+
+    while(1){
+
+    }
+    /*
     //initialize joystick button
 	P4->SEL0 &= ~0x02; //P4.1 set as simple GPIO
 	P4->SEL1 &= ~0x02; //P4.1 set as simple GPIO
@@ -142,6 +159,7 @@ int main(void){
         while(1){
             MAP_PCM_gotoLPM0();
         }
+        */
 }
 
 /* This interrupt is fired whenever a conversion is completed and placed in
