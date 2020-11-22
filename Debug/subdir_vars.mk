@@ -17,7 +17,8 @@ C_SRCS += \
 ../MinerBig.c \
 ../SlimeBig.c \
 ../main.c \
-../system_msp432p401r.c 
+../system_msp432p401r.c \
+../titleScreen.c 
 
 C_DEPS += \
 ./BasicMap.d \
@@ -28,7 +29,8 @@ C_DEPS += \
 ./MinerBig.d \
 ./SlimeBig.d \
 ./main.d \
-./system_msp432p401r.d 
+./system_msp432p401r.d \
+./titleScreen.d 
 
 OBJS += \
 ./BasicMap.obj \
@@ -39,7 +41,8 @@ OBJS += \
 ./MinerBig.obj \
 ./SlimeBig.obj \
 ./main.obj \
-./system_msp432p401r.obj 
+./system_msp432p401r.obj \
+./titleScreen.obj 
 
 OBJS__QUOTED += \
 "BasicMap.obj" \
@@ -50,7 +53,8 @@ OBJS__QUOTED += \
 "MinerBig.obj" \
 "SlimeBig.obj" \
 "main.obj" \
-"system_msp432p401r.obj" 
+"system_msp432p401r.obj" \
+"titleScreen.obj" 
 
 C_DEPS__QUOTED += \
 "BasicMap.d" \
@@ -61,7 +65,8 @@ C_DEPS__QUOTED += \
 "MinerBig.d" \
 "SlimeBig.d" \
 "main.d" \
-"system_msp432p401r.d" 
+"system_msp432p401r.d" \
+"titleScreen.d" 
 
 C_SRCS__QUOTED += \
 "../BasicMap.c" \
@@ -72,6 +77,7 @@ C_SRCS__QUOTED += \
 "../MinerBig.c" \
 "../SlimeBig.c" \
 "../main.c" \
-"../system_msp432p401r.c" 
+"../system_msp432p401r.c" \
+"../titleScreen.c" 
 
 

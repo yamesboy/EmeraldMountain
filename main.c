@@ -1,10 +1,8 @@
 
 //****************************************************************************
 //
-// main.c - moves a circle using the joy stick
-// on the booster pack, gets smaller if joy stick is pressed down
-// Author: James Hurst
-// EE334 10/29/2020
+// Authors:
+// EE334 2020
 //
 //****************************************************************************
 
@@ -19,13 +17,57 @@
 # define FOREGROUND GRAPHICS_COLOR_WHITE
 # define BACKGROUND GRAPHICS_COLOR_BROWN
 
+void titleScreen(Graphics_Context*);
+void Init_Graph(Graphics_Context* g_sContext_f);
+void delay_init(void);
+void delay(uint32_t duration_us);
+void InitJoyStick(void);
+void ADC14_IRQHandler(void);
+
 //ADC results buffer
 static uint16_t resultsBuffer[2];
 
 //global variables
-int r;
 Graphics_Context g_sContext;
 
+/*
+ * Main function
+ * Plays through the game
+ */
+int main(void){
+
+	//initialize button 1
+	P5->SEL0 &= ~0x02; //P4.1 set as simple GPIO
+	P5->SEL1 &= ~0x02; //P4.1 set as simple GPIO
+	P5->DIR &= ~0x02; //set the direction reg as inputs for p4.1
+	P5->REN |= 0x02; //activate input pull resistors for p4.1
+	P5OUT |= 0x02; //assign resistors as pull up.
+
+	//initialize joystick
+	InitJoyStick();
+
+	//initialize g context
+    Init_Graph(&g_sContext);
+
+	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
+
+	extern Graphics_Image max88PP_UNCOMP;
+    extern tImage  BasicMap00004BPP_UNCOMP;
+    extern tImage  Emerald100004BPP_UNCOMP;
+    extern tImage  MinerBig00004BPP_UNCOMP;
+    extern tImage  SlimeBig00004BPP_UNCOMP;
+
+    Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
+
+    Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
+    Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
+    Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
+
+
+    while(1){
+
+    }
+}
 
 void Init_Graph(Graphics_Context* g_sContext_f) //Initializing the graphics
 {
@@ -116,52 +158,6 @@ void InitJoyStick(void){
     MAP_ADC14_toggleConversionTrigger();
 }
 
-/*
- * Main function
- * Creates a circle of radius 25, moves with the joystick
- */
-int main(void){
-    extern Graphics_Image max88PP_UNCOMP;
-    extern tImage  BasicMap00004BPP_UNCOMP;
-    extern tImage  Emerald100004BPP_UNCOMP;
-    extern tImage  MinerBig00004BPP_UNCOMP;
-    extern tImage  SlimeBig00004BPP_UNCOMP;
-
-	//initialize g context
-    Init_Graph(&g_sContext);
-
-    Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
-
-    Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
-    Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
-    Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
-
-
-    while(1){
-
-    }
-    /*
-    //initialize joystick button
-	P4->SEL0 &= ~0x02; //P4.1 set as simple GPIO
-	P4->SEL1 &= ~0x02; //P4.1 set as simple GPIO
-	P4->DIR &= ~0x02; //set the direction reg as inputs for p4.1
-	P4->REN |= 0x02; //activate input pull resistors for p4.1
-	P4OUT |= 0x02; //assign resistors as pull up.
-
-    //create circle in the center
-    r = 25;
-    int x = 64;
-    int y = 64;
-    Graphics_fillCircle(&g_sContext, x, y, r);
-
-    InitJoyStick();
-
-        while(1){
-            MAP_PCM_gotoLPM0();
-        }
-        */
-}
-
 /* This interrupt is fired whenever a conversion is completed and placed in
  * ADC_MEM1. This signals the end of conversion and the results array is
  * grabbed and placed in resultsBuffer */
@@ -178,20 +174,20 @@ void ADC14_IRQHandler(void)
         /* Store ADC14 conversion results */
     	resultsBuffer[0] = ADC14_getResult(ADC_MEM0);
     	resultsBuffer[1] = ADC14_getResult(ADC_MEM1);
-
-        /* Determine if JoyStick button is pressed then change r */
-        if (!(P4IN & 0x02)){
-        	r = 10;
-        }
-        else{
-        	r = 25;
-        }
-
-        //128 = display resolution for x and y, acts as a scaler.
-        Graphics_fillCircle(&g_sContext, resultsBuffer[0]/128, 128 - resultsBuffer[1]/128, r); //draws circle following joystick movements
-
-        Graphics_setForegroundColor(&g_sContext, BACKGROUND); //set the foreground color to be same as the background color
-        Graphics_fillCircle(&g_sContext, resultsBuffer[0]/128, 128 - resultsBuffer[1]/128, r); //erase old circle
-        Graphics_setForegroundColor(&g_sContext, FOREGROUND);
     }
+}
+/*
+ * This function draws the title screen
+ * and waits for input from button 1 to
+ * progress to the first screen of the game
+ */
+void titleScreen(Graphics_Context* g_sContext){
+	extern Graphics_Image max88PP_UNCOMP;
+	extern tImage titleScreen00004BPP_UNCOMP;
+	Graphics_drawImage(g_sContext, &titleScreen00004BPP_UNCOMP, 0, 0);
+
+	while(P5IN & 0x02){//wait for button to be pressed down
+	}
+
+	return; //progress out of title screen
 }
