@@ -12,10 +12,14 @@
 #include "LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
 #include <stdio.h>
+#include "characters.h"
 
 //define macro for setting foreground and background colors
 # define FOREGROUND GRAPHICS_COLOR_WHITE
 # define BACKGROUND GRAPHICS_COLOR_BROWN
+
+enum xDir { right = 1, left = -1}
+enum yDir { up = 1, down = -1}
 
 void titleScreen(Graphics_Context*);
 void Init_Graph(Graphics_Context* g_sContext_f);
@@ -67,7 +71,7 @@ int main(void){
 
 
     while(1){
-
+    	move()
     }
 }
 
