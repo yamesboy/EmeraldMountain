@@ -49,16 +49,18 @@ int main(void){
 	//initialize g context
     Init_Graph(&g_sContext);
 
-	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
-
-	extern Graphics_Image max88PP_UNCOMP;
+    //initialize sprites
+    extern Graphics_Image max88PP_UNCOMP;
     extern tImage  BasicMap00004BPP_UNCOMP;
     extern tImage  Emerald100004BPP_UNCOMP;
     extern tImage  MinerBig00004BPP_UNCOMP;
     extern tImage  SlimeBig00004BPP_UNCOMP;
 
-    Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
+	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
 
+	//Ready for gameloop below:
+
+    Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
     Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
     Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
