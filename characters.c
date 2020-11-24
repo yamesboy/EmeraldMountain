@@ -26,12 +26,12 @@ void attack(character attacker, character defender){
 
 }
 
-void move(tileData * mapTiles, character character, int xpos, int ypos){
-    if (movePossible(mapTiles,character, xpos, ypos)){
+void move(tileData * mapTiles, character character, int xDir, int yDir){
+    if (movePossible(mapTiles,character, xDir, yDir)){
         mapTiles[character.xPos*character.yPos].isOccupied = 0;
 
-        character.xPos = character.xPos + xpos;
-        character.yPos = character.yPos + ypos;
+        character.xPos = character.xPos + xDir;
+        character.yPos = character.yPos + yDir;
 
         mapTiles[character.xPos*character.yPos].isOccupied = 1;
     }

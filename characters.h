@@ -12,7 +12,8 @@
 typedef struct character{
     int hearts;
     int xPos, yPos;
-    int direction;
+    int xDir=0;
+    int yDir=0;
     int attackRadius;
 }character;
 

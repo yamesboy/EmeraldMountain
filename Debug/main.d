@@ -59,6 +59,7 @@ main.obj: C:/ti/simplelink_msp432p4_sdk_3_40_01_02/source/ti/grlib/grlib.h
 main.obj: ../LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h
 main.obj: C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/include/stdio.h
 main.obj: C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/include/stdarg.h
+main.obj: ../characters.h
 
 ../main.c: 
 C:/ti/simplelink_msp432p4_sdk_3_40_01_02/source/ti/devices/msp432p4xx/inc/msp.h: 
@@ -119,3 +120,4 @@ C:/ti/simplelink_msp432p4_sdk_3_40_01_02/source/ti/grlib/grlib.h:
 ../LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h: 
 C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/include/stdio.h: 
 C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/include/stdarg.h: 
+../characters.h: 
