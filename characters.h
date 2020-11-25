@@ -7,6 +7,7 @@
 
 #ifndef CHARACTERS_H_
 #define CHARACTERS_H_
+#include <ti/grlib/grlib.h>
 
 
 typedef struct character{
@@ -14,6 +15,8 @@ typedef struct character{
     int xPos, yPos;
     int xDir, yDir;
     int attackRadius;
+    Graphics_Image image; //for sprites
+
 }character;
 
 typedef struct tileData{
@@ -23,7 +26,7 @@ typedef struct tileData{
 }tileData;
 
 
-character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos);
+character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image);
 
 void attack(character attacker, character defender);
 void move(tileData * mapTiles, character character, int resultsBuffer[2]);

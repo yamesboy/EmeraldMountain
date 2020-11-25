@@ -68,7 +68,7 @@ int main(void){
 
 
     while(1){
-    	move(&mapTiles, character, resultsBuffer[0], resultsBuffer[1]);
+    	move(&g_sContext, &mapTiles, &character, &resultsBuffer);
     }
 }
 

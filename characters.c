@@ -10,7 +10,7 @@
 	enum xDir { right = 1, left = -1};
 	enum yDir { up = 1, down = -1};
 
-character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos){
+character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image sprite){
     character new_character;
 
     new_character.hearts = max_hearts;
@@ -18,6 +18,7 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos){
     new_character.yPos = ySpawnPos;
     new_character.xDir = 0;
     new_character.yDir = 0;
+    new_character.image = sprite;
 
     return new_character;
 }
@@ -31,7 +32,7 @@ void attack(character attacker, character defender){
 
 }
 
-void move(tileData * mapTiles, character character, int resultsBuffer[2]){
+void move(Graphics_Context* g_sContext, tileData * mapTiles, character * character, int resultsBuffer[2]){
 	//declare 2 ints to store which direction the character is moving
 	int xDir, yDir;
 
@@ -57,11 +58,16 @@ void move(tileData * mapTiles, character character, int resultsBuffer[2]){
 			yDir = 0;
 		}
 
-	if (movePossible(mapTiles,character, xDir, yDir)){
-        mapTiles[character.xPos*character.yPos].isOccupied = 0;
+	if (movePossible(mapTiles, *character, xDir, yDir)){
+        mapTiles[(*character.xPos) * (*character.yPos)].isOccupied = 0;
 
-        character.xPos = character.xPos + xDir;
-        character.yPos = character.yPos + yDir;
+        //erase the old sprite
+        Graphics_drawImage(g_sContext, character->image, character->xPos, character->yPos);
+        //update coords
+        character->xPos = character->xPos + xDir;
+        character->yPos = character->yPos + yDir;
+        //drawn new image
+        Graphics_drawImage(g_sContext, character->image, character->xPos, character->yPos);
 
         mapTiles[character.xPos*character.yPos].isOccupied = 1;
     }
