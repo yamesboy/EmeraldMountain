@@ -12,7 +12,7 @@
 typedef struct character{
     int hearts;
     int xPos, yPos;
-    int xDirection, yDirection;
+    int xDir, yDir;
     int attackRadius;
 }character;
 
@@ -25,7 +25,7 @@ typedef struct tileData{
 character  init_Character(int max_hearts, int xSpawnPos, int ySpawnPos);
 
 void attack(character * attacker, character * defender);
-void move(tileData * mapTiles, character * character, int xpos, int ypos);
+void move(tileData * mapTiles, character * character, int resultsBuffer[2]);
 int movePossible(tileData * mapTiles, character * character, int xpos, int ypos);
 void spawnEnemyBlob(tileData * mapTiles, int xCoord, int yCoord);
 tileData  generateIntialMapTiles(tileData * mapTiles);
