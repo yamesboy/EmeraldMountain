@@ -18,9 +18,6 @@
 # define FOREGROUND GRAPHICS_COLOR_WHITE
 # define BACKGROUND GRAPHICS_COLOR_BROWN
 
-enum xDir { right = 1, left = -1};
-enum yDir { up = 1, down = -1};
-
 void titleScreen(Graphics_Context*);
 void Init_Graph(Graphics_Context* g_sContext_f);
 void delay_init(void);
@@ -71,7 +68,7 @@ int main(void){
 
 
     while(1){
-    	move(&mapTiles, character, xDir, yDir);
+    	move(&mapTiles, character, resultsBuffer[0], resultsBuffer[1]);
     }
 }
 
@@ -180,20 +177,6 @@ void ADC14_IRQHandler(void)
         /* Store ADC14 conversion results */
     	resultsBuffer[0] = ADC14_getResult(ADC_MEM0);
     	resultsBuffer[1] = ADC14_getResult(ADC_MEM1);
-
-    	if(resultsBuffer[0] > 10000){ //right
-    		xDir = right;
-    	}
-    	else if(resultsBuffer[0] < 6000){ //left
-    		xDir = left;
-    	}
-
-    	if(resultsBuffer[1] > 10000){ //up
-    		yDir = up;
-    	}
-    	else if(resultsBuffer[1] < 6000){ //down
-    		yDir = down;
-    	}
     }
 }
 /*
