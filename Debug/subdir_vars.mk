@@ -14,6 +14,7 @@ C_SRCS += \
 ../HAL_I2C.c \
 ../HAL_TMP006.c \
 ../Miner.c \
+../MinerBackground.c \
 ../MinerBig.c \
 ../SlimeBig.c \
 ../characters.c \
@@ -27,6 +28,7 @@ C_DEPS += \
 ./HAL_I2C.d \
 ./HAL_TMP006.d \
 ./Miner.d \
+./MinerBackground.d \
 ./MinerBig.d \
 ./SlimeBig.d \
 ./characters.d \
@@ -40,6 +42,7 @@ OBJS += \
 ./HAL_I2C.obj \
 ./HAL_TMP006.obj \
 ./Miner.obj \
+./MinerBackground.obj \
 ./MinerBig.obj \
 ./SlimeBig.obj \
 ./characters.obj \
@@ -53,6 +56,7 @@ OBJS__QUOTED += \
 "HAL_I2C.obj" \
 "HAL_TMP006.obj" \
 "Miner.obj" \
+"MinerBackground.obj" \
 "MinerBig.obj" \
 "SlimeBig.obj" \
 "characters.obj" \
@@ -66,6 +70,7 @@ C_DEPS__QUOTED += \
 "HAL_I2C.d" \
 "HAL_TMP006.d" \
 "Miner.d" \
+"MinerBackground.d" \
 "MinerBig.d" \
 "SlimeBig.d" \
 "characters.d" \
@@ -79,6 +84,7 @@ C_SRCS__QUOTED += \
 "../HAL_I2C.c" \
 "../HAL_TMP006.c" \
 "../Miner.c" \
+"../MinerBackground.c" \
 "../MinerBig.c" \
 "../SlimeBig.c" \
 "../characters.c" \

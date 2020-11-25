@@ -32,7 +32,7 @@ void attack(character attacker, character defender){
 
 }
 
-void move(Graphics_Context* g_sContext, tileData * mapTiles, character * character, int resultsBuffer[2]){
+void move(Graphics_Context* g_sContext, tileData * mapTiles, character * character, int *resultsBuffer){
 	//declare 2 ints to store which direction the character is moving
 	int xDir, yDir;
 
@@ -59,17 +59,17 @@ void move(Graphics_Context* g_sContext, tileData * mapTiles, character * charact
 		}
 
 	if (movePossible(mapTiles, *character, xDir, yDir)){
-        mapTiles[(*character.xPos) * (*character.yPos)].isOccupied = 0;
+        mapTiles[(character->xPos) * (character->yPos)].isOccupied = 0;
 
         //erase the old sprite
-        Graphics_drawImage(g_sContext, character->image, character->xPos, character->yPos);
+        Graphics_drawImage(g_sContext, character->background, character->xPos, character->yPos);
         //update coords
         character->xPos = character->xPos + xDir;
         character->yPos = character->yPos + yDir;
         //drawn new image
         Graphics_drawImage(g_sContext, character->image, character->xPos, character->yPos);
 
-        mapTiles[character.xPos*character.yPos].isOccupied = 1;
+        mapTiles[character->xPos*character->yPos].isOccupied = 1;
     }
 }
 
@@ -77,16 +77,16 @@ int movePossible(tileData * mapTiles, character character, int xpos, int ypos){
     if (mapTiles[xpos*ypos].isOccupied){
         return 0;
     }
-    if (character.xPos + xpos > 127){
+    if (character.xPos + xpos > 124){
         return 0;
     }
-    else if (character.xPos - xpos < 0){
+    else if (character.xPos - xpos < 4){
         return 0;
     }
-    else if (character.yPos + ypos > 127){
+    else if (character.yPos + ypos > 124){
         return 0;
     }
-    else if (character.yPos - ypos < 0){
+    else if (character.yPos - ypos < 4){
         return 0;
     }
     return 1;
