@@ -24,6 +24,7 @@ typedef struct tileData{
 
 character  init_Character(int max_hearts, int xSpawnPos, int ySpawnPos);
 
+
 void attack(character * attacker, character * defender);
 void move(tileData * mapTiles, character * character, int resultsBuffer[2]);
 int movePossible(tileData * mapTiles, character * character, int xpos, int ypos);

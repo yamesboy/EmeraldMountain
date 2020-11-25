@@ -16,6 +16,7 @@ C_SRCS += \
 ../Miner.c \
 ../MinerBig.c \
 ../SlimeBig.c \
+../characters.c \
 ../main.c \
 ../system_msp432p401r.c \
 ../titleScreen.c 
@@ -28,6 +29,7 @@ C_DEPS += \
 ./Miner.d \
 ./MinerBig.d \
 ./SlimeBig.d \
+./characters.d \
 ./main.d \
 ./system_msp432p401r.d \
 ./titleScreen.d 
@@ -40,6 +42,7 @@ OBJS += \
 ./Miner.obj \
 ./MinerBig.obj \
 ./SlimeBig.obj \
+./characters.obj \
 ./main.obj \
 ./system_msp432p401r.obj \
 ./titleScreen.obj 
@@ -52,6 +55,7 @@ OBJS__QUOTED += \
 "Miner.obj" \
 "MinerBig.obj" \
 "SlimeBig.obj" \
+"characters.obj" \
 "main.obj" \
 "system_msp432p401r.obj" \
 "titleScreen.obj" 
@@ -64,6 +68,7 @@ C_DEPS__QUOTED += \
 "Miner.d" \
 "MinerBig.d" \
 "SlimeBig.d" \
+"characters.d" \
 "main.d" \
 "system_msp432p401r.d" \
 "titleScreen.d" 
@@ -76,6 +81,7 @@ C_SRCS__QUOTED += \
 "../Miner.c" \
 "../MinerBig.c" \
 "../SlimeBig.c" \
+"../characters.c" \
 "../main.c" \
 "../system_msp432p401r.c" \
 "../titleScreen.c" 

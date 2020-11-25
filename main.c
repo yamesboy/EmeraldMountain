@@ -12,6 +12,7 @@
 #include "LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
 #include <stdio.h>
+#include "characters.h"
 
 //define macro for setting foreground and background colors
 # define FOREGROUND GRAPHICS_COLOR_WHITE
@@ -67,7 +68,7 @@ int main(void){
 
 
     while(1){
-
+    	move(&mapTiles, character, resultsBuffer[0], resultsBuffer[1]);
     }
 }
 

@@ -32,6 +32,7 @@ void attack(character * attacker, character * defender){
 
 }
 
+
 void move(tileData * mapTiles, character * character, int resultsBuffer[2]){
 	//declare 2 ints to store which direction the character is moving
 	int xDir, yDir;
@@ -65,7 +66,6 @@ void move(tileData * mapTiles, character * character, int resultsBuffer[2]){
         character->yPos = character->yPos + yDir;
 
         mapTiles[character->xPos*character->yPos].isOccupied = 1;
-        mapTiles[character->xPos*character->yPos].character = *character;
     }
 }
 
