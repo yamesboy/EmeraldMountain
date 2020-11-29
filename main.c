@@ -66,9 +66,9 @@ int main(void){
     Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
-    character Miner = init_Character(3, 64, 64, Graphics_Image image);
+    character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP);
     while(1){
-    	move(&g_sContext, &mapTiles, &character, &resultsBuffer);
+    	 move(&g_sContext, &mapTiles , &Miner, &resultsBuffer);
     }
 }
 

@@ -62,12 +62,12 @@ void move(Graphics_Context* g_sContext, tileData * mapTiles, character * charact
         mapTiles[(character->xPos) * (character->yPos)].isOccupied = 0;
 
         //erase the old sprite
-        Graphics_drawImage(g_sContext, character->background, character->xPos, character->yPos);
+        Graphics_drawImage(g_sContext, &character->background, character->xPos, character->yPos);
         //update coords
         character->xPos = character->xPos + xDir;
         character->yPos = character->yPos + yDir;
         //drawn new image
-        Graphics_drawImage(g_sContext, character->image, character->xPos, character->yPos);
+        Graphics_drawImage(g_sContext, &character->image, character->xPos, character->yPos);
 
         mapTiles[character->xPos*character->yPos].isOccupied = 1;
     }
