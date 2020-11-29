@@ -12,6 +12,7 @@
 #include "LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "characters.h"
 
 //define macro for setting foreground and background colors
@@ -66,7 +67,11 @@ int main(void){
     Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
+   struct tileData *mapTiles = (struct tileData*)malloc(sizeof(struct tileData));
+
+	mapTiles = generateInitialMapTiles(mapTiles);
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP);
+
     while(1){
     	 move(&g_sContext, &mapTiles , &Miner, &resultsBuffer);
     }

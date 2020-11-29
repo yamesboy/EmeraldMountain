@@ -33,6 +33,6 @@ void attack(character attacker, character defender);
 void move(Graphics_Context* g_sContext, tileData * mapTiles, character * character, int *resultsBuffer);
 int movePossible(tileData * mapTiles, character character, int xpos, int ypos);
 void spawnEnemyBlob(tileData * mapTiles, int xCoord, int yCoord);
-
+tileData * generateInitialMapTiles(tileData * mapTiles);
 
 #endif /* CHARACTERS_H_ */

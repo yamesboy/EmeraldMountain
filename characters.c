@@ -101,7 +101,7 @@ void monsterMoveTimer(int delay){
 
 }
 
-tileData * generateIntialMapTiles(tileData * mapTiles){
+tileData * generateInitialMapTiles(tileData * mapTiles){
     int i;
 
     for (i = 0; i < 128*128; i++){
