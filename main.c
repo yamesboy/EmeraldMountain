@@ -56,6 +56,7 @@ int main(void){
     extern tImage  Emerald100004BPP_UNCOMP;
     extern tImage  MinerBig00004BPP_UNCOMP;
     extern tImage  SlimeBig00004BPP_UNCOMP;
+    extern tImage  MinerBackground00004BPP_UNCOMP;
 
 	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
 
@@ -67,7 +68,7 @@ int main(void){
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
 
-    character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP);
+    character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP);
     while(1){
     	 move(&g_sContext, &Miner, resultsBuffer);
     }

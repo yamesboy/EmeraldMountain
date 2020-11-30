@@ -10,7 +10,7 @@
 	enum xDir { right = 1, left = -1};
 	enum yDir { up = -1, down = 1};
 
-character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image sprite){
+character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image sprite, Graphics_Image spriteBackground){
     character new_character;
 
     new_character.hearts = max_hearts;
@@ -19,6 +19,7 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     new_character.xDir = 0;
     new_character.yDir = 0;
     new_character.image = sprite;
+    new_character.background = spriteBackground;
 
     return new_character;
 }

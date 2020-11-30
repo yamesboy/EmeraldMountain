@@ -19,7 +19,7 @@ typedef struct character{
     Graphics_Image background; //for the background of the sprite
 }character;
 
-character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image);
+character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image, Graphics_Image spriteBackground);
 
 void attack(character * attacker, character * defender);
 void move(Graphics_Context* g_sContext, character * character, uint16_t * resultsBuffer);
