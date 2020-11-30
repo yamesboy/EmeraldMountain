@@ -8,6 +8,7 @@
 #ifndef SCORE_H_
 #define SCORE_H_
 #include <ti/grlib/grlib.h>
+#include <stdio.h>
 
 typedef struct treasure{
 	int value;

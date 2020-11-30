@@ -14,4 +14,10 @@ void calcScore(treasure gem){
 }
 void drawScore(Graphics_Context* g_sContext){
 	//draw the score on the screen
+	Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
+	Graphics_setFont(g_sContext, &g_sFontFixed6x8); //set font and style
+
+	char score[10];
+	sprintf(score, "Score: %d", totalScore);
+	Graphics_drawString(g_sContext, (int8_t*)score, AUTO_STRING_LENGTH, 0, 0, 1);
 }

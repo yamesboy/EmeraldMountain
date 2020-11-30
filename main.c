@@ -72,6 +72,7 @@ int main(void){
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP);
     while(1){
     	 move(&g_sContext, &Miner, resultsBuffer);
+    	 drawScore(&g_sContext);
     }
 }
 
