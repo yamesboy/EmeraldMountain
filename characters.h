@@ -23,16 +23,17 @@ typedef struct character{
 typedef struct tileData{
     int isOccupied;
     int isWall;
-    character blahblahblah;
+    character tileCharacter;
 }tileData;
 
 
 character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image);
 
-void attack(character attacker, character defender);
-void move(Graphics_Context* g_sContext, tileData * mapTiles, character * character, int *resultsBuffer);
-int movePossible(tileData * mapTiles, character character, int xpos, int ypos);
-void spawnEnemyBlob(tileData * mapTiles, int xCoord, int yCoord);
+void attack(character * attacker, character * defender);
+void move(Graphics_Context* g_sContext, tileData ** mapTiles, character * character, int *resultsBuffer);
+int movePossible(tileData ** mapTiles, character *character, int xpos, int ypos);
+void spawnEnemyBlob(tileData ** mapTiles, int xCoord, int yCoord);
+void generateInitialMapTiles(tileData **mapTiles);
 
 
 #endif /* CHARACTERS_H_ */
