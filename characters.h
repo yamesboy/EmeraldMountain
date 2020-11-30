@@ -7,8 +7,11 @@
 
 #ifndef CHARACTERS_H_
 #define CHARACTERS_H_
+#include <stdio.h>
 #include <ti/grlib/grlib.h>
-
+#include <ti/devices/msp432p4xx/inc/msp.h>
+#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
+enum CharacterType {Player = 0, Monster = 1};
 
 typedef struct character{
     int hearts;
@@ -17,14 +20,19 @@ typedef struct character{
     int attackRadius;
     Graphics_Image image; //for sprites
     Graphics_Image background; //for the background of the sprite
+    enum CharacterType cType;
+
 }character;
 
-character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image, Graphics_Image spriteBackground);
+character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image, Graphics_Image spriteBackground, enum CharacterType cType);
 
 void attack(character * attacker, character * defender);
 void move(Graphics_Context* g_sContext, character * character, uint16_t * resultsBuffer);
 int movePossible(character *character, int xpos, int ypos);
+int checkIfOverlap(character * player, character * monster);
+void isHit(Graphics_Context *g_sContext, character * player);
 void spawnEnemyBlob(int xCoord, int yCoord);
+void delay(uint32_t duration_us);
 
 
 

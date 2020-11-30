@@ -7,12 +7,9 @@
 //
 //****************************************************************************
 
-#include <ti/devices/msp432p4xx/inc/msp.h>
-#include <ti/devices/msp432p4xx/driverlib/driverlib.h>
-#include <ti/grlib/grlib.h>
+
 #include "LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
-#include <stdio.h>
 #include "characters.h"
 #include "score.h"
 
@@ -23,7 +20,6 @@
 void titleScreen(Graphics_Context*);
 void Init_Graph(Graphics_Context* g_sContext_f);
 void delay_init(void);
-void delay(uint32_t duration_us);
 void InitJoyStick(void);
 void ADC14_IRQHandler(void);
 
@@ -38,7 +34,7 @@ Graphics_Context g_sContext;
  * Plays through the game
  */
 int main(void){
-
+    delay_init();
 	//initialize button 1
 	P5->SEL0 &= ~0x02; //P4.1 set as simple GPIO
 	P5->SEL1 &= ~0x02; //P4.1 set as simple GPIO
@@ -68,10 +64,16 @@ int main(void){
     Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
+    character Slime = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Monster);
 
-    character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP);
+    character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Player);
     while(1){
-    	 move(&g_sContext, &Miner, resultsBuffer);
+        move(&g_sContext, &Miner, resultsBuffer);
+        if(checkIfOverlap(&Miner, &Slime)){
+            isHit(&g_sContext, &Miner); //logic to subtract hearts when coming in contact with
+
+        }
+        delay(100000);
     }
 }
 
@@ -100,14 +102,6 @@ void delay_init(void) //timer initialization
     Timer32_disableInterrupt(TIMER32_0_BASE);
 }
 
-void delay(uint32_t duration_us) //delay function in u sec
-{
-    Timer32_haltTimer(TIMER32_0_BASE);
-    Timer32_setCount(TIMER32_0_BASE, 3*duration_us);
-    Timer32_startTimer(TIMER32_0_BASE, true);
-
-    while(Timer32_getValue(TIMER32_0_BASE)>0);
-}
 
 void InitJoyStick(void){
     /* Halting WDT and disabling master interrupts */
