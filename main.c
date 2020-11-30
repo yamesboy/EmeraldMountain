@@ -66,7 +66,6 @@ int main(void){
 
     Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
     Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
-    Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
 
