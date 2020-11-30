@@ -19,6 +19,7 @@ C_SRCS += \
 ../SlimeBig.c \
 ../characters.c \
 ../main.c \
+../score.c \
 ../system_msp432p401r.c \
 ../titleScreen.c 
 
@@ -33,6 +34,7 @@ C_DEPS += \
 ./SlimeBig.d \
 ./characters.d \
 ./main.d \
+./score.d \
 ./system_msp432p401r.d \
 ./titleScreen.d 
 
@@ -47,6 +49,7 @@ OBJS += \
 ./SlimeBig.obj \
 ./characters.obj \
 ./main.obj \
+./score.obj \
 ./system_msp432p401r.obj \
 ./titleScreen.obj 
 
@@ -61,6 +64,7 @@ OBJS__QUOTED += \
 "SlimeBig.obj" \
 "characters.obj" \
 "main.obj" \
+"score.obj" \
 "system_msp432p401r.obj" \
 "titleScreen.obj" 
 
@@ -75,6 +79,7 @@ C_DEPS__QUOTED += \
 "SlimeBig.d" \
 "characters.d" \
 "main.d" \
+"score.d" \
 "system_msp432p401r.d" \
 "titleScreen.d" 
 
@@ -89,6 +94,7 @@ C_SRCS__QUOTED += \
 "../SlimeBig.c" \
 "../characters.c" \
 "../main.c" \
+"../score.c" \
 "../system_msp432p401r.c" \
 "../titleScreen.c" 
 

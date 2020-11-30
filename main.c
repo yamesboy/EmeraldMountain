@@ -3,6 +3,7 @@
 //
 // Authors:
 // EE334 2020
+// James Hurst, Paul, Justin, Kyle
 //
 //****************************************************************************
 
@@ -13,6 +14,7 @@
 #include "LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h"
 #include <stdio.h>
 #include "characters.h"
+#include "score.h"
 
 //define macro for setting foreground and background colors
 # define FOREGROUND GRAPHICS_COLOR_WHITE
