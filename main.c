@@ -66,12 +66,10 @@ int main(void){
     Graphics_drawImage(&g_sContext, &MinerBig00004BPP_UNCOMP, 10, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
-    tileData * mapTiles[128*128];
-    generateInitialMapTiles(mapTiles);
 
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP);
     while(1){
-    	 move(&g_sContext, &mapTiles , &Miner, &resultsBuffer);
+    	 move(&g_sContext, &Miner, resultsBuffer);
     }
 }
 
