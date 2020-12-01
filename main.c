@@ -59,6 +59,7 @@ int main(void){
     extern tImage  MinerBig00004BPP_UNCOMP;
     extern tImage  SlimeBig00004BPP_UNCOMP;
     extern tImage  MinerBackground00004BPP_UNCOMP;
+    extern tImage  GemBackground00004BPP_UNCOMP;
 
 	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
 
@@ -70,6 +71,9 @@ int main(void){
 
 
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP);
+    treasure gem = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+
+    spawnTreasure(&g_sContext, &gem, 30, 30);
     while(1){
     	 move(&g_sContext, &Miner, resultsBuffer);
     	 drawScore(&g_sContext);

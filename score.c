@@ -21,3 +21,22 @@ void drawScore(Graphics_Context* g_sContext){
 	sprintf(score, "Score: %d", totalScore);
 	Graphics_drawString(g_sContext, (int8_t*)score, AUTO_STRING_LENGTH, 0, 0, 1);
 }
+
+treasure init_Treasure(int value, Graphics_Image sprite, Graphics_Image spriteBackground){
+	treasure newTreasure;
+
+	newTreasure.background = spriteBackground;
+	newTreasure.image = sprite;
+	newTreasure.value = value;
+	newTreasure.xPos = 0; //default
+	newTreasure.yPos = 0; //default
+
+	return newTreasure;
+}
+void spawnTreasure(Graphics_Context* g_sContext, treasure* treasure, int xPos, int yPos){
+	//update treasure's location
+	treasure->xPos = xPos;
+	treasure->yPos = yPos;
+	//draw the treasure on the screen in the new location
+	Graphics_drawImage(g_sContext, &treasure->image, treasure->xPos, treasure->yPos);
+}
