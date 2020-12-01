@@ -11,9 +11,9 @@ CMD_SRCS += \
 C_SRCS += \
 ../BasicMap.c \
 ../Emerald.c \
+../GemBackground.c \
 ../HAL_I2C.c \
 ../HAL_TMP006.c \
-../Miner.c \
 ../MinerBackground.c \
 ../MinerBig.c \
 ../SlimeBig.c \
@@ -26,9 +26,9 @@ C_SRCS += \
 C_DEPS += \
 ./BasicMap.d \
 ./Emerald.d \
+./GemBackground.d \
 ./HAL_I2C.d \
 ./HAL_TMP006.d \
-./Miner.d \
 ./MinerBackground.d \
 ./MinerBig.d \
 ./SlimeBig.d \
@@ -41,9 +41,9 @@ C_DEPS += \
 OBJS += \
 ./BasicMap.obj \
 ./Emerald.obj \
+./GemBackground.obj \
 ./HAL_I2C.obj \
 ./HAL_TMP006.obj \
-./Miner.obj \
 ./MinerBackground.obj \
 ./MinerBig.obj \
 ./SlimeBig.obj \
@@ -56,9 +56,9 @@ OBJS += \
 OBJS__QUOTED += \
 "BasicMap.obj" \
 "Emerald.obj" \
+"GemBackground.obj" \
 "HAL_I2C.obj" \
 "HAL_TMP006.obj" \
-"Miner.obj" \
 "MinerBackground.obj" \
 "MinerBig.obj" \
 "SlimeBig.obj" \
@@ -71,9 +71,9 @@ OBJS__QUOTED += \
 C_DEPS__QUOTED += \
 "BasicMap.d" \
 "Emerald.d" \
+"GemBackground.d" \
 "HAL_I2C.d" \
 "HAL_TMP006.d" \
-"Miner.d" \
 "MinerBackground.d" \
 "MinerBig.d" \
 "SlimeBig.d" \
@@ -86,9 +86,9 @@ C_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "../BasicMap.c" \
 "../Emerald.c" \
+"../GemBackground.c" \
 "../HAL_I2C.c" \
 "../HAL_TMP006.c" \
-"../Miner.c" \
 "../MinerBackground.c" \
 "../MinerBig.c" \
 "../SlimeBig.c" \

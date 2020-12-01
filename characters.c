@@ -79,16 +79,16 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
 
 int movePossible(character * character, int xpos, int ypos){
     // Check if space is occupied!
-    if (character->xPos + xpos > 100 && xpos == 1){
+    if (character->xPos + xpos > 100 && xpos == right){
         return 0;
     }
-    else if (character->xPos - xpos < 6 && xpos == -1){
+    else if (character->xPos - xpos < 6 && xpos == left){
         return 0;
     }
-    else if (character->yPos + ypos > 98 && ypos == 1){
+    else if (character->yPos + ypos > 98 && ypos == down){
         return 0;
     }
-    else if (character->yPos - ypos < 6 && ypos == -1){
+    else if (character->yPos - ypos < 6 && ypos == up){
         return 0;
     }
     return 1;

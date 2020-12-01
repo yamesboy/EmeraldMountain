@@ -53,7 +53,7 @@ static const unsigned char pixel_SlimeBig00004BPP_UNCOMP[] =
 0x11, 0x11, 0x33, 0x33, 0x33, 0x33, 0x33, 0x11, 0x11
 };
 
-static const unsigned long palette_SlimeBig00004BPP_UNCOMP[]=
+static const unsigned int palette_SlimeBig00004BPP_UNCOMP[]=
 {
 	0x1eda02, 	0x572f17, 	0xffffff, 	0x2daf4d, 
 	0x000000, 	0x000000, 	0x000000, 	0x000000, 

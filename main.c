@@ -55,6 +55,7 @@ int main(void){
     extern tImage  MinerBig00004BPP_UNCOMP;
     extern tImage  SlimeBig00004BPP_UNCOMP;
     extern tImage  MinerBackground00004BPP_UNCOMP;
+    extern tImage  GemBackground00004BPP_UNCOMP;
 
 	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
 
@@ -64,9 +65,13 @@ int main(void){
     Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
-    character Slime = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Monster);
+    treasure gem = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    spawnTreasure(&g_sContext, &gem, 30, 30);
 
+    character Slime = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Monster);
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Player);
+
+    drawScore(&g_sContext);
     while(1){
         move(&g_sContext, &Miner, resultsBuffer);
         if(checkIfOverlap(&Miner, &Slime)){

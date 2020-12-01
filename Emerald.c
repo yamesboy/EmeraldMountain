@@ -45,7 +45,7 @@ static const unsigned char pixel_Emerald100004BPP_UNCOMP[] =
 0x22, 0x22, 0x12, 0x22, 0x22
 };
 
-static const unsigned long palette_Emerald100004BPP_UNCOMP[]=
+static const unsigned int palette_Emerald100004BPP_UNCOMP[]=
 {
 	0x4dfd78, 	0x1eda02, 	0x572f17, 	0x000000, 
 	0x000000, 	0x000000, 	0x000000, 	0x000000, 
