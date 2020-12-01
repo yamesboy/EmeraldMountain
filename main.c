@@ -3,7 +3,7 @@
 //
 // Authors:
 // EE334 2020
-// James Hurst, Paul, Justin, Kyle
+// James Hurst, Paul, Justin, Kyle, Anthony
 //
 //****************************************************************************
 
@@ -62,11 +62,10 @@ int main(void){
 	//Ready for gameloop below:
 
     Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
-    Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
-    treasure gem = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
-    spawnTreasure(&g_sContext, &gem, 30, 30);
+    treasure Gem = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    spawnTreasure(&g_sContext, &Gem, 30, 30);
 
     character Slime = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Monster);
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Player);
@@ -74,6 +73,8 @@ int main(void){
     drawScore(&g_sContext);
     while(1){
         move(&g_sContext, &Miner, resultsBuffer);
+        checkIfOverlapTreasure(&g_sContext, &Miner, &Gem);
+
         if(checkIfOverlap(&Miner, &Slime)){
             isHit(&g_sContext, &Miner); //logic to subtract hearts when coming in contact with
 
