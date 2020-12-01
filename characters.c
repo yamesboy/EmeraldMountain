@@ -39,10 +39,10 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
     if(character->cType == Player) {
 
         //L and R directions
-        if(resultsBuffer[0] > 10000){ //right
+        if(resultsBuffer[0] > 12000){ //right
             xDir = right;
         }
-        else if( resultsBuffer[0] < 6000){ //left
+        else if( resultsBuffer[0] < 7000){ //left
             xDir = left;
         }
         else{
@@ -50,10 +50,10 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
         }
 
         //U and D directions
-        if( resultsBuffer[1] > 10000){ //up
+        if( resultsBuffer[1] > 12000){ //up
             yDir = up;
         }
-        else if(resultsBuffer[1] < 6000){ //down
+        else if(resultsBuffer[1] < 7000){ //down
             yDir = down;
         }
         else{
