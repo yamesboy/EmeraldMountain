@@ -17,6 +17,7 @@
 # define FOREGROUND GRAPHICS_COLOR_WHITE
 # define BACKGROUND GRAPHICS_COLOR_BROWN
 
+int gameOver(Graphics_Context* g_sContext, character * player);
 void titleScreen(Graphics_Context*);
 void Init_Graph(Graphics_Context* g_sContext_f);
 void delay_init(void);
@@ -72,7 +73,7 @@ int main(void){
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Player);
 
     drawScore(&g_sContext);
-    while(1){
+    while(!gameOver(&g_sContext, &Miner)){
 
         move(&g_sContext, &Miner, resultsBuffer);
         moveMonster(&g_sContext, &Miner, &Slime);
@@ -201,4 +202,20 @@ void titleScreen(Graphics_Context* g_sContext){
 	}
 
 	return; //progress out of title screen
+}
+/*
+ * This function checks to see if
+ * a player's hearts == 0, if so game over
+ * draws end screen
+ */
+int gameOver(Graphics_Context* g_sContext, character * player){
+	if(player->hearts == 0){ //you lost
+
+		extern Graphics_Image max88PP_UNCOMP;
+		extern tImage titleScreen00004BPP_UNCOMP;
+		Graphics_drawImage(g_sContext, &titleScreen00004BPP_UNCOMP, 0, 0); //draws end screen
+
+		return 1;
+	}
+	return 0;
 }

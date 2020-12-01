@@ -2,7 +2,7 @@
  * characters.c
  *
  *  Created on: Nov 19, 2020
- *      Author: paulk
+ *      Author: paulk, Jamesh
  */
 
 #include "characters.h"
@@ -124,7 +124,7 @@ int checkIfOverlap(character * player, character * monster) {
 }
 
 void isHit(Graphics_Context *g_sContext, character * player) {
-    if(player->hearts <= 1) {
+    if(player->hearts < 1) {
         //Game over
         Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
         Graphics_setFont(g_sContext, &g_sFontFixed6x8); //set font and style
