@@ -26,12 +26,12 @@ typedef struct character{
 
 character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image, Graphics_Image spriteBackground, enum CharacterType cType);
 
-void attack(character * attacker, character * defender);
 void move(Graphics_Context* g_sContext, character * character, uint16_t * resultsBuffer);
 int movePossible(character *character, int xpos, int ypos);
+void moveMonster(Graphics_Context * g_sContext, character * player, character * monster);
 int checkIfOverlap(character * player, character * monster);
 void isHit(Graphics_Context *g_sContext, character * player);
-void spawnEnemyBlob(int xCoord, int yCoord);
+void spawnEnemy(Graphics_Context * g_sContext, character * character, int xCoord, int yCoord);
 void delay(uint32_t duration_us);
 
 

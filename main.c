@@ -74,6 +74,7 @@ int main(void){
     drawScore(&g_sContext);
     while(1){
         move(&g_sContext, &Miner, resultsBuffer);
+        moveMonster(&g_sContext, &Miner, &Slime);
         if(checkIfOverlap(&Miner, &Slime)){
             isHit(&g_sContext, &Miner); //logic to subtract hearts when coming in contact with
 

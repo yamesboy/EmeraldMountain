@@ -7,6 +7,7 @@
 
 #include "characters.h"
 
+
 	enum xDir { right = 1, left = -1};
 	enum yDir { up = -1, down = 1};
 
@@ -23,14 +24,6 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     new_character.cType = cType;
 
     return new_character;
-}
-
-void attack(character *attacker, character *defender){
-
-    // if (monster in attack radius){
-    // take character xpos*ypos check if monster is in this radius.
-    // if monster in radius, deduct 1 heart.
-
 }
 
 void move(Graphics_Context* g_sContext, character * character, uint16_t * resultsBuffer){
@@ -71,11 +64,31 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
             Graphics_drawImage(g_sContext, &character->image, character->xPos, character->yPos);
         }
     }
-    else if(character->cType == Monster) {
-       //Monster movement logic
-    }
 }
 
+void moveMonster(Graphics_Context * g_sContext, character * player, character * monster){
+    int xDir, yDir;
+    // Follow the player.
+    if (player->xPos < monster->xPos){
+        xDir = left;
+    }
+    else {
+        xDir = right;
+    }
+    if (player->yPos < monster->yPos){
+        yDir = up;
+    }
+    else{
+        yDir = down;
+    }
+        Graphics_drawImage(g_sContext, &monster->background, monster->xPos, monster->yPos);
+        //update coords
+        monster->xPos = monster->xPos + xDir;
+        monster->yPos = monster->yPos + yDir;
+        //drawn new image
+        Graphics_drawImage(g_sContext, &monster->image, monster->xPos, monster->yPos);
+
+}
 
 int movePossible(character * character, int xpos, int ypos){
     // Check if space is occupied!
@@ -135,12 +148,12 @@ void isHit(Graphics_Context *g_sContext, character * player) {
     }
 }
 
-void spawnEnemyBlob(int xCoord, int yCoord){
-    // function to draw blob on screen here.
-}
-
-void monsterMoveTimer(int delay){
-
+void spawnEnemy(Graphics_Context* g_sContext, character * character, int xPos, int yPos){
+    //update treasure's location
+    character->xPos = xPos;
+    character->yPos = yPos;
+    //draw the treasure on the screen in the new location
+    Graphics_drawImage(g_sContext, &character->image, character->xPos, character->yPos);
 }
 
 void delay(uint32_t duration_us) //delay function in u sec
