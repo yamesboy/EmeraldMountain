@@ -3,7 +3,7 @@
 //
 // Authors:
 // EE334 2020
-// James Hurst, Paul, Justin, Kyle
+// James Hurst, Paul, Justin, Kyle, Anthony
 //
 //****************************************************************************
 
@@ -56,25 +56,29 @@ int main(void){
     extern tImage  SlimeBig00004BPP_UNCOMP;
     extern tImage  MinerBackground00004BPP_UNCOMP;
     extern tImage  GemBackground00004BPP_UNCOMP;
+    extern tImage  SlimeBigBackground00004BPP_UNCOMP;
 
 	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
 
 	//Ready for gameloop below:
 
     Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
-    Graphics_drawImage(&g_sContext, &Emerald100004BPP_UNCOMP, 64, 64);
     Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
 
-    treasure gem = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
-    spawnTreasure(&g_sContext, &gem, 30, 30);
+    treasure Gem = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    spawnTreasure(&g_sContext, &Gem, 30, 30);
 
-    character Slime = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Monster);
+    character Slime = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Player);
 
     drawScore(&g_sContext);
     while(1){
+
         move(&g_sContext, &Miner, resultsBuffer);
         moveMonster(&g_sContext, &Miner, &Slime);
+
+        checkIfOverlapTreasure(&g_sContext, &Miner, &Gem); //checks for gem overlap and adds score if true
+
         if(checkIfOverlap(&Miner, &Slime)){
             isHit(&g_sContext, &Miner); //logic to subtract hearts when coming in contact with
 

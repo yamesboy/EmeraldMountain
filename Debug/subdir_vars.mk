@@ -17,6 +17,7 @@ C_SRCS += \
 ../MinerBackground.c \
 ../MinerBig.c \
 ../SlimeBig.c \
+../SlimeBigBackground.c \
 ../characters.c \
 ../main.c \
 ../score.c \
@@ -32,6 +33,7 @@ C_DEPS += \
 ./MinerBackground.d \
 ./MinerBig.d \
 ./SlimeBig.d \
+./SlimeBigBackground.d \
 ./characters.d \
 ./main.d \
 ./score.d \
@@ -47,6 +49,7 @@ OBJS += \
 ./MinerBackground.obj \
 ./MinerBig.obj \
 ./SlimeBig.obj \
+./SlimeBigBackground.obj \
 ./characters.obj \
 ./main.obj \
 ./score.obj \
@@ -62,6 +65,7 @@ OBJS__QUOTED += \
 "MinerBackground.obj" \
 "MinerBig.obj" \
 "SlimeBig.obj" \
+"SlimeBigBackground.obj" \
 "characters.obj" \
 "main.obj" \
 "score.obj" \
@@ -77,6 +81,7 @@ C_DEPS__QUOTED += \
 "MinerBackground.d" \
 "MinerBig.d" \
 "SlimeBig.d" \
+"SlimeBigBackground.d" \
 "characters.d" \
 "main.d" \
 "score.d" \
@@ -92,6 +97,7 @@ C_SRCS__QUOTED += \
 "../MinerBackground.c" \
 "../MinerBig.c" \
 "../SlimeBig.c" \
+"../SlimeBigBackground.c" \
 "../characters.c" \
 "../main.c" \
 "../score.c" \
