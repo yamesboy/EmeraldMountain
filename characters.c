@@ -21,6 +21,7 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     new_character.image = sprite;
     new_character.background = spriteBackground;
     new_character.cType = cType;
+    new_character.active = 1;
 
     return new_character;
 }
@@ -126,26 +127,21 @@ void isHit(Graphics_Context *g_sContext, character * player) {
     P2OUT=0x40;
     delay(10000000);
     P2OUT=0x00;
-	///if(player->hearts < 1) {
-      //Game over
-	//}
-    //else {
 
-    	Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
-        Graphics_drawImage(g_sContext, &player->background, player->xPos, player->yPos);
-        Graphics_setFont(g_sContext, &g_sFontFixed6x8); //set font and style
-        Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
+    Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
+    Graphics_drawImage(g_sContext, &player->background, player->xPos, player->yPos);
+    Graphics_setFont(g_sContext, &g_sFontFixed6x8); //set font and style
+    Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
 
-        player->hearts = player->hearts - 1;
-        player->xPos = 64;
-        player->yPos = 64;
+    player->hearts = player->hearts - 1;
+    player->xPos = 64;
+    player->yPos = 64;
 
-        delay(3*3000000);
+    delay(3*3000000);
 
-        Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_BROWN);
-        Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
+    Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_BROWN);
+    Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
 
-    //}
 }
 
 void spawnEnemy(Graphics_Context* g_sContext, character * character, int xPos, int yPos){

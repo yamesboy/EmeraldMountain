@@ -18,6 +18,7 @@
 # define BACKGROUND GRAPHICS_COLOR_BROWN
 
 //function prototypes
+int bossLevel(Graphics_Context* g_sContext, character * player);
 int level1(Graphics_Context* g_sContext, character * player);
 int gameOver(Graphics_Context* g_sContext, character * player);
 void titleScreen(Graphics_Context*);
@@ -73,7 +74,13 @@ int main(void){
     while(!gameOver(&g_sContext, &Miner)){
     	level1(&g_sContext, &Miner);
         delay(100000);
+
+        if(bossLevel(&g_sContext, &Miner)){ //successfully exited boss level
+        	Miner.hearts = 0; //ends the game
+        	gameOver(&g_sContext, &Miner);
+        }
     }
+    return 1;
 }
 
 
@@ -212,12 +219,12 @@ int gameOver(Graphics_Context* g_sContext, character * player){
 }
 
 int level1(Graphics_Context* g_sContext, character * player){
-	int levelOver = 0;
+	int levelOver = 0; //flag for handling when a level is over
+	int spawned = 0;//for handling when treasure has already been spawned
+
 	//initialize characters and treasures
     treasure Gem1 = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
-    spawnTreasure(g_sContext, &Gem1, 30, 30);
     treasure Gem2 = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
-    spawnTreasure(g_sContext, &Gem2, 80, 30);
 
     character Slime1 = init_Character(1, 15, 100, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
     character Slime2 = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
@@ -226,14 +233,64 @@ int level1(Graphics_Context* g_sContext, character * player){
 	//level loop
 	while(!gameOver(g_sContext, player) && !levelOver){//if you die or complete the level, the while loop ends
         move(g_sContext, player, resultsBuffer); //player movement mechanic
-        moveMonster(g_sContext, player, &Slime1); //monster movement mechanic
-        moveMonster(g_sContext, player, &Slime2); //monster movement mechanic
+        //moveMonster(g_sContext, player, &Slime1); //monster movement mechanic
+        //moveMonster(g_sContext, player, &Slime2); //monster movement mechanic
 
         if(checkIfOverlap(player, &Slime1) || checkIfOverlap(player, &Slime2)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
         }
+
+        if(!Slime1.active && !Slime2.active && !spawned){ //if enemies are gone, spawn treasure
+        	spawnTreasure(g_sContext, &Gem1, 44, 30);
+        	spawnTreasure(g_sContext, &Gem2, 54, 30);
+
+        	spawned = 1;
+        }
         checkIfOverlapTreasure(g_sContext, player, &Gem1); //checks for gem overlap and adds score if true
         checkIfOverlapTreasure(g_sContext, player, &Gem2); //checks for gem overlap and adds score if true
+
+        levelOver = nextRoom(g_sContext, player);
+	}
+	return levelOver; //level over
+}
+
+int bossLevel(Graphics_Context* g_sContext, character * player){
+	int levelOver = 0; //flag for handling when a level is over
+	int spawned = 0;//for handling when treasure has already been spawned
+
+	//initialize characters and treasures
+    treasure Gem1 = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    treasure Gem2 = init_Treasure(600, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    treasure Gem3 = init_Treasure(900, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    treasure Gem4 = init_Treasure(1200, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    treasure Gem5 = init_Treasure(1500, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+
+    character BossSlime = init_Character(3, 120, 120, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
+
+	drawScore(g_sContext);
+	//level loop
+	while(!gameOver(g_sContext, player) && !levelOver){//if you die or complete the level, the while loop ends
+        move(g_sContext, player, resultsBuffer); //player movement mechanic
+        //moveMonster(g_sContext, player, &BossSlime); //monster movement mechanic
+
+        if(checkIfOverlap(player, &BossSlime)){
+        	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
+        }
+
+        if(BossSlime.active && !spawned){ //if boss is gone, spawn treasure
+        	spawnTreasure(g_sContext, &Gem1, 44, 30);
+        	spawnTreasure(g_sContext, &Gem2, 54, 30);
+        	spawnTreasure(g_sContext, &Gem3, 64, 30);
+        	spawnTreasure(g_sContext, &Gem4, 74, 30);
+        	spawnTreasure(g_sContext, &Gem5, 84, 30);
+
+        	spawned = 1;
+        }
+        checkIfOverlapTreasure(g_sContext, player, &Gem1); //checks for gem overlap and adds score if true
+        checkIfOverlapTreasure(g_sContext, player, &Gem2); //checks for gem overlap and adds score if true
+        checkIfOverlapTreasure(g_sContext, player, &Gem3); //checks for gem overlap and adds score if true
+        checkIfOverlapTreasure(g_sContext, player, &Gem4); //checks for gem overlap and adds score if true
+        checkIfOverlapTreasure(g_sContext, player, &Gem5); //checks for gem overlap and adds score if true
 
         levelOver = nextRoom(g_sContext, player);
 	}

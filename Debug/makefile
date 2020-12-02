@@ -13,6 +13,7 @@ ORDERED_OBJS += \
 "./BasicMap.obj" \
 "./Emerald.obj" \
 "./EndScreen.obj" \
+"./FinalLevel.obj" \
 "./GemBackground.obj" \
 "./HAL_I2C.obj" \
 "./HAL_TMP006.obj" \
@@ -182,8 +183,8 @@ EmeraldMountain.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "BasicMap.obj" "Emerald.obj" "EndScreen.obj" "GemBackground.obj" "HAL_I2C.obj" "HAL_TMP006.obj" "MinerBackground.obj" "MinerBig.obj" "SlimeBig.obj" "SlimeBigBackground.obj" "characters.obj" "main.obj" "score.obj" "system_msp432p401r.obj" "titleScreen.obj" "LcdDriver\Crystalfontz128x128_ST7735.obj" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj" "ccs\startup_msp432p401r_ccs.obj" 
-	-$(RM) "BasicMap.d" "Emerald.d" "EndScreen.d" "GemBackground.d" "HAL_I2C.d" "HAL_TMP006.d" "MinerBackground.d" "MinerBig.d" "SlimeBig.d" "SlimeBigBackground.d" "characters.d" "main.d" "score.d" "system_msp432p401r.d" "titleScreen.d" "LcdDriver\Crystalfontz128x128_ST7735.d" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.d" "ccs\startup_msp432p401r_ccs.d" 
+	-$(RM) "BasicMap.obj" "Emerald.obj" "EndScreen.obj" "FinalLevel.obj" "GemBackground.obj" "HAL_I2C.obj" "HAL_TMP006.obj" "MinerBackground.obj" "MinerBig.obj" "SlimeBig.obj" "SlimeBigBackground.obj" "characters.obj" "main.obj" "score.obj" "system_msp432p401r.obj" "titleScreen.obj" "LcdDriver\Crystalfontz128x128_ST7735.obj" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj" "ccs\startup_msp432p401r_ccs.obj" 
+	-$(RM) "BasicMap.d" "Emerald.d" "EndScreen.d" "FinalLevel.d" "GemBackground.d" "HAL_I2C.d" "HAL_TMP006.d" "MinerBackground.d" "MinerBig.d" "SlimeBig.d" "SlimeBigBackground.d" "characters.d" "main.d" "score.d" "system_msp432p401r.d" "titleScreen.d" "LcdDriver\Crystalfontz128x128_ST7735.d" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.d" "ccs\startup_msp432p401r_ccs.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

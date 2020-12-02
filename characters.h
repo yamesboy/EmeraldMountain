@@ -18,6 +18,7 @@ typedef struct character{
     int xPos, yPos;
     int xDir, yDir;
     int attackRadius;
+    int active;
     Graphics_Image image; //for sprites
     Graphics_Image background; //for the background of the sprite
     enum CharacterType cType;

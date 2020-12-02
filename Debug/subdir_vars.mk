@@ -12,6 +12,7 @@ C_SRCS += \
 ../BasicMap.c \
 ../Emerald.c \
 ../EndScreen.c \
+../FinalLevel.c \
 ../GemBackground.c \
 ../HAL_I2C.c \
 ../HAL_TMP006.c \
@@ -29,6 +30,7 @@ C_DEPS += \
 ./BasicMap.d \
 ./Emerald.d \
 ./EndScreen.d \
+./FinalLevel.d \
 ./GemBackground.d \
 ./HAL_I2C.d \
 ./HAL_TMP006.d \
@@ -46,6 +48,7 @@ OBJS += \
 ./BasicMap.obj \
 ./Emerald.obj \
 ./EndScreen.obj \
+./FinalLevel.obj \
 ./GemBackground.obj \
 ./HAL_I2C.obj \
 ./HAL_TMP006.obj \
@@ -63,6 +66,7 @@ OBJS__QUOTED += \
 "BasicMap.obj" \
 "Emerald.obj" \
 "EndScreen.obj" \
+"FinalLevel.obj" \
 "GemBackground.obj" \
 "HAL_I2C.obj" \
 "HAL_TMP006.obj" \
@@ -80,6 +84,7 @@ C_DEPS__QUOTED += \
 "BasicMap.d" \
 "Emerald.d" \
 "EndScreen.d" \
+"FinalLevel.d" \
 "GemBackground.d" \
 "HAL_I2C.d" \
 "HAL_TMP006.d" \
@@ -97,6 +102,7 @@ C_SRCS__QUOTED += \
 "../BasicMap.c" \
 "../Emerald.c" \
 "../EndScreen.c" \
+"../FinalLevel.c" \
 "../GemBackground.c" \
 "../HAL_I2C.c" \
 "../HAL_TMP006.c" \
