@@ -81,7 +81,8 @@ int main(void){
     while(!gameOver(&g_sContext, &Miner)){
 
         move(&g_sContext, &Miner, resultsBuffer);
-        moveMonster(&g_sContext, &Miner, &Slime);
+        nextRoom(&g_sContext, &Miner); //checks for if the character moves to the next room
+        //moveMonster(&g_sContext, &Miner, &Slime);
 
         checkIfOverlapTreasure(&g_sContext, &Miner, &Gem); //checks for gem overlap and adds score if true
 

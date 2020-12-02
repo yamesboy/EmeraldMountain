@@ -156,6 +156,29 @@ void spawnEnemy(Graphics_Context* g_sContext, character * character, int xPos, i
     Graphics_drawImage(g_sContext, &character->image, character->xPos, character->yPos);
 }
 
+void nextRoom(Graphics_Context *g_sContext, character * character){
+	extern tImage  BasicMap00004BPP_UNCOMP;
+
+	if(character->xPos + character->xDir <= 4 && character->yPos + character->yDir <= 60 && character->yPos + character->yDir >= 50) //checks for left door
+    {
+        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
+        character->xPos = 64;
+        character->yPos = 64;
+    }
+    if(character->yPos + character->yDir <= 5 && character->xPos + character->xDir <= 60 && character->xPos + character->xDir >= 50) //checks for top door
+    {
+        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
+        character->xPos = 64;
+        character->yPos = 64;
+    }
+    if(character->xPos + character->xDir >= 124 && character->yPos + character->yDir <= 60 && character->yPos + character->yDir >= 50) //checks for right door
+    {
+        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
+        character->xPos = 64;
+        character->yPos = 64;
+    }
+}
+
 void delay(uint32_t duration_us) //delay function in u sec
 {
     Timer32_haltTimer(TIMER32_0_BASE);
