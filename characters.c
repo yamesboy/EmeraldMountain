@@ -10,6 +10,8 @@
 	enum xDir { right = 1, left = -1};
 	enum yDir { up = -1, down = 1};
 
+
+
 character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image sprite, Graphics_Image spriteBackground, enum CharacterType cType){
     character new_character;
 
@@ -21,6 +23,8 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     new_character.image = sprite;
     new_character.background = spriteBackground;
     new_character.cType = cType;
+
+
 
     return new_character;
 }
@@ -111,8 +115,16 @@ int checkIfOverlap(character * player, character * monster) {
 }
 
 void isHit(Graphics_Context *g_sContext, character * player) {
+//    WDT_A->CTL = WDT_A_CTL_PW | WDT_A_CTL_HOLD;
+//    P2->SEL1 &= ~0x00;
+//    P2->SEL0 &= ~0x00;
+//    P2->DIR |= 0x00;
+    P2OUT=0x40;
+    delay(10000000);
+    P2OUT=0x00;
+
     if(player->hearts <= 1) {
-        //Game over
+            //Game over
         Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
         Graphics_setFont(g_sContext, &g_sFontFixed6x8); //set font and style
         Graphics_drawString(g_sContext, (int8_t*) "Game Over", AUTO_STRING_LENGTH, 65, 5, 1);
@@ -132,7 +144,11 @@ void isHit(Graphics_Context *g_sContext, character * player) {
         Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_BROWN);
         Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
 
+
     }
+
+
+
 }
 
 void spawnEnemyBlob(int xCoord, int yCoord){
