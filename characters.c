@@ -2,16 +2,13 @@
  * characters.c
  *
  *  Created on: Nov 19, 2020
- *      Author: paulk, Jamesh
+ *      Author: paulk, Jamesh, Kyle, Justin, Anthony
  */
 
 #include "characters.h"
 
-
 	enum xDir { right = 1, left = -1};
 	enum yDir { up = -1, down = 1};
-
-
 
 character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image sprite, Graphics_Image spriteBackground, enum CharacterType cType){
     character new_character;
@@ -24,8 +21,6 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     new_character.image = sprite;
     new_character.background = spriteBackground;
     new_character.cType = cType;
-
-
 
     return new_character;
 }

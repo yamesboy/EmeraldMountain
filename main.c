@@ -215,11 +215,11 @@ void titleScreen(Graphics_Context* g_sContext){
  * draws end screen
  */
 int gameOver(Graphics_Context* g_sContext, character * player){
-	if(player->hearts == 0){ //you lost
+	if(player->hearts <= 0){ //you lost
 
 		extern Graphics_Image max88PP_UNCOMP;
-		extern tImage titleScreen00004BPP_UNCOMP;
-		Graphics_drawImage(g_sContext, &titleScreen00004BPP_UNCOMP, 0, 0); //draws end screen
+		extern tImage EndScreen00004BPP_UNCOMP;
+		Graphics_drawImage(g_sContext, &EndScreen00004BPP_UNCOMP, 0, 0); //draws end screen
 
 		return 1;
 	}
