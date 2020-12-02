@@ -143,6 +143,29 @@ void monsterMoveTimer(int delay){
 
 }
 
+extern tImage  BasicMap00004BPP_UNCOMP;
+void nextRoom(Graphics_Context *g_sContext, character * character, int xDir, int yDir)
+{
+    if(character->xPos + xDir == 4 && character->yPos + yDir <= 55 && character->yPos + yDir >= 50) // && character->yPos + yDir <= 55)
+    {
+        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
+        character->xPos = 64;
+        character->yPos = 64;
+    }
+    if(character->xPos + xDir <= 55 && character->xPos + xDir >= 50 && character->yPos + yDir == 4)
+    {
+        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
+        character->xPos = 64;
+        character->yPos = 64;
+    }
+    if(character->xPos + xDir == 124 && character->yPos + yDir <= 55 && character->yPos + yDir >= 50)
+    {
+        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
+        character->xPos = 64;
+        character->yPos = 64;
+    }
+}
+
 void delay(uint32_t duration_us) //delay function in u sec
 {
     Timer32_haltTimer(TIMER32_0_BASE);

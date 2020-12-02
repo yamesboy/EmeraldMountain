@@ -33,7 +33,7 @@ int checkIfOverlap(character * player, character * monster);
 void isHit(Graphics_Context *g_sContext, character * player);
 void spawnEnemyBlob(int xCoord, int yCoord);
 void delay(uint32_t duration_us);
-
+void nextRoom(Graphics_Context *g_sContext, character * character, int xDir, int yDir);
 
 
 #endif /* CHARACTERS_H_ */

@@ -72,11 +72,12 @@ int main(void){
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Player);
 
     drawScore(&g_sContext);
+    //nextRoom(&g_sContext, &Miner, 0, 0);
     while(1){
         move(&g_sContext, &Miner, resultsBuffer);
+        nextRoom(&g_sContext, &Miner, 0, 0);
         if(checkIfOverlap(&Miner, &Slime)){
             isHit(&g_sContext, &Miner); //logic to subtract hearts when coming in contact with
-
         }
         delay(100000);
     }
