@@ -43,6 +43,11 @@ int main(void){
 	P5->REN |= 0x02; //activate input pull resistors for p4.1
 	P5OUT |= 0x02; //assign resistors as pull up.
 
+	// set red LED as outputs
+	P2->SEL1 &= ~0x40; //set P2.6 as simple  GPIO
+	P2->SEL0 &= ~0x40; // set P2.6 as simple  GPIO
+	P2->DIR |= 0x40; // set P2.6 as output
+
 	//initialize joystick
 	InitJoyStick();
 
@@ -82,6 +87,7 @@ int main(void){
 
         if(checkIfOverlap(&Miner, &Slime)){
             isHit(&g_sContext, &Miner); //logic to subtract hearts when coming in contact with
+
 
         }
         delay(100000);
