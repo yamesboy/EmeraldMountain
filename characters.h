@@ -32,7 +32,7 @@ void moveMonster(Graphics_Context * g_sContext, character * player, character * 
 int checkIfOverlap(character * player, character * monster);
 void isHit(Graphics_Context *g_sContext, character * player);
 void spawnEnemy(Graphics_Context * g_sContext, character * character, int xCoord, int yCoord);
-void nextRoom(Graphics_Context *g_sContext, character * character);
+int nextRoom(Graphics_Context *g_sContext, character * character);
 void delay(uint32_t duration_us);
 
 

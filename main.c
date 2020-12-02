@@ -17,6 +17,8 @@
 # define FOREGROUND GRAPHICS_COLOR_WHITE
 # define BACKGROUND GRAPHICS_COLOR_BROWN
 
+//function prototypes
+int level1(Graphics_Context* g_sContext, character * player);
 int gameOver(Graphics_Context* g_sContext, character * player);
 void titleScreen(Graphics_Context*);
 void Init_Graph(Graphics_Context* g_sContext_f);
@@ -30,6 +32,14 @@ static uint16_t resultsBuffer[2];
 //global variables
 Graphics_Context g_sContext;
 
+//initialize global sprites
+extern Graphics_Image max88PP_UNCOMP;
+extern tImage  Emerald100004BPP_UNCOMP;
+extern tImage  MinerBig00004BPP_UNCOMP;
+extern tImage  SlimeBig00004BPP_UNCOMP;
+extern tImage  MinerBackground00004BPP_UNCOMP;
+extern tImage  GemBackground00004BPP_UNCOMP;
+extern tImage  SlimeBigBackground00004BPP_UNCOMP;
 /*
  * Main function
  * Plays through the game
@@ -54,43 +64,14 @@ int main(void){
 	//initialize g context
     Init_Graph(&g_sContext);
 
-    //initialize sprites
-    extern Graphics_Image max88PP_UNCOMP;
-    extern tImage  BasicMap00004BPP_UNCOMP;
-    extern tImage  Emerald100004BPP_UNCOMP;
-    extern tImage  MinerBig00004BPP_UNCOMP;
-    extern tImage  SlimeBig00004BPP_UNCOMP;
-    extern tImage  MinerBackground00004BPP_UNCOMP;
-    extern tImage  GemBackground00004BPP_UNCOMP;
-    extern tImage  SlimeBigBackground00004BPP_UNCOMP;
-
-	titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
-
-	//Ready for gameloop below:
-
-    Graphics_drawImage(&g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0);
-    Graphics_drawImage(&g_sContext, &SlimeBig00004BPP_UNCOMP, 100, 64);
-
-    treasure Gem = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
-    spawnTreasure(&g_sContext, &Gem, 30, 30);
-
-    character Slime = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
     character Miner = init_Character(3, 64, 64, MinerBig00004BPP_UNCOMP, MinerBackground00004BPP_UNCOMP, Player);
 
+    titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
+
     drawScore(&g_sContext);
+    //Ready for gameloop below:
     while(!gameOver(&g_sContext, &Miner)){
-
-        move(&g_sContext, &Miner, resultsBuffer);
-        nextRoom(&g_sContext, &Miner); //checks for if the character moves to the next room
-        //moveMonster(&g_sContext, &Miner, &Slime);
-
-        checkIfOverlapTreasure(&g_sContext, &Miner, &Gem); //checks for gem overlap and adds score if true
-
-        if(checkIfOverlap(&Miner, &Slime)){
-            isHit(&g_sContext, &Miner); //logic to subtract hearts when coming in contact with
-
-
-        }
+    	level1(&g_sContext, &Miner);
         delay(100000);
     }
 }
@@ -208,6 +189,9 @@ void titleScreen(Graphics_Context* g_sContext){
 	while(P5IN & 0x02){//wait for button to be pressed down
 	}
 
+	extern tImage  BasicMap00004BPP_UNCOMP;
+	Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //draws map background for first level
+
 	return; //progress out of title screen
 }
 /*
@@ -225,4 +209,33 @@ int gameOver(Graphics_Context* g_sContext, character * player){
 		return 1;
 	}
 	return 0;
+}
+
+int level1(Graphics_Context* g_sContext, character * player){
+	int levelOver = 0;
+	//initialize characters and treasures
+    treasure Gem1 = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    spawnTreasure(g_sContext, &Gem1, 30, 30);
+    treasure Gem2 = init_Treasure(300, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
+    spawnTreasure(g_sContext, &Gem2, 80, 30);
+
+    character Slime1 = init_Character(1, 15, 100, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
+    character Slime2 = init_Character(1, 100, 64, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
+
+	drawScore(g_sContext);
+	//level loop
+	while(!gameOver(g_sContext, player) && !levelOver){//if you die or complete the level, the while loop ends
+        move(g_sContext, player, resultsBuffer); //player movement mechanic
+        moveMonster(g_sContext, player, &Slime1); //monster movement mechanic
+        moveMonster(g_sContext, player, &Slime2); //monster movement mechanic
+
+        if(checkIfOverlap(player, &Slime1) || checkIfOverlap(player, &Slime2)){
+        	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
+        }
+        checkIfOverlapTreasure(g_sContext, player, &Gem1); //checks for gem overlap and adds score if true
+        checkIfOverlapTreasure(g_sContext, player, &Gem2); //checks for gem overlap and adds score if true
+
+        levelOver = nextRoom(g_sContext, player);
+	}
+	return levelOver; //level over
 }
