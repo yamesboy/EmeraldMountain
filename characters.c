@@ -72,7 +72,7 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
 void moveMonster(Graphics_Context * g_sContext, character * player, character * monster){
     int xDir, yDir;
     monster->moveDelay++;
-    if (monster->moveDelay < 30){
+    if (monster->moveDelay < 30 || !monster->active){
         return;
     }
     monster->moveDelay = 0;
@@ -117,15 +117,19 @@ int movePossible(character * character, int xpos, int ypos){
 }
 
 //Returns 1 if player hitbox contains monster->x,y
-int checkIfOverlap(character * player, character * monster) {
-    int minPlayerX = player->xPos-18;
-    int maxPlayerX = player->xPos+24;
-    int minPlayerY = player->yPos-18;
-    int maxPlayerY = player->yPos+24;
+int checkIfOverlap(Graphics_Context *g_sContext, character * player, character * monster) {
+    int minPlayerX = player->xPos-19;
+    int maxPlayerX = player->xPos+25;
+    int minPlayerY = player->yPos-19;
+    int maxPlayerY = player->yPos+25;
 
-    if(maxPlayerY > monster->yPos && minPlayerY < monster->yPos) {
+    if(maxPlayerY > monster->yPos && minPlayerY < monster->yPos && monster->active) {
         if(maxPlayerX > monster->xPos && minPlayerX < monster->xPos) {
-            return true;
+        	if(player->attacking){ //if the player is attacking
+        		isHit(g_sContext, monster); //hit the monster
+        		return false;
+        	}
+        	return true;
         }
     }
     return false;
@@ -174,12 +178,12 @@ void attack(character *attacker){
 }
 void checkAttackTimer(character * player, Graphics_Context * g_sContext) {
     if(player->attacking) {
-        int final = (player->timerStart - Timer32_getValue(TIMER32_1_BASE))/3000000.0;
+        int final = (player->timerStart - Timer32_getValue(TIMER32_1_BASE))/3000000;
         char mystring[10];
         snprintf(mystring, 10, "%d", final);
         Graphics_drawString(g_sContext, (int8_t*)mystring, AUTO_STRING_LENGTH, 0, 5, 1);
 
-        if(final > 10.0) {
+        if(final >= 1) {
             player->attacking = 0;
             player->timerStart = 0;
             Timer32_haltTimer(TIMER32_1_BASE);

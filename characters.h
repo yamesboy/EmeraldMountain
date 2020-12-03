@@ -33,7 +33,7 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
 void move(Graphics_Context* g_sContext, character * character, uint16_t * resultsBuffer);
 int movePossible(character *character, int xpos, int ypos);
 void moveMonster(Graphics_Context * g_sContext, character * player, character * monster);
-int checkIfOverlap(character * player, character * monster);
+int checkIfOverlap(Graphics_Context *g_sContext, character * player, character * monster);
 void isHit(Graphics_Context *g_sContext, character * player);
 void spawnEnemy(Graphics_Context * g_sContext, character * character, int xCoord, int yCoord);
 int nextRoom(Graphics_Context *g_sContext, character * character);

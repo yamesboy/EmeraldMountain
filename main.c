@@ -244,7 +244,7 @@ int level1(Graphics_Context* g_sContext, character * player){
         }
         checkAttackTimer(player, g_sContext);
 
-        if(checkIfOverlap(player, &Slime1) || checkIfOverlap(player, &Slime2)){
+        if(checkIfOverlap(g_sContext, player, &Slime1) || checkIfOverlap(g_sContext, player, &Slime2)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
         }
 
@@ -289,7 +289,7 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
         }
         checkAttackTimer(player, g_sContext);
 
-        if(checkIfOverlap(player, &BossSlime)){
+        if(checkIfOverlap(g_sContext, player, &BossSlime)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with monsters
         }
 
