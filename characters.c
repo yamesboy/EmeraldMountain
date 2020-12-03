@@ -174,7 +174,7 @@ void attack(character *attacker){
 	attacker->attacking = 1;
 	Timer32_haltTimer(TIMER32_1_BASE);
     MAP_Timer32_initModule(TIMER32_1_BASE, TIMER32_PRESCALER_1, TIMER32_32BIT, TIMER32_PERIODIC_MODE);
-    Timer32_setCount(TIMER32_1_BASE, 4*10000000); //gives maximum of 1 sec
+    Timer32_setCount(TIMER32_1_BASE, 4*10000000); //gives maximum of about 1 sec
     Timer32_startTimer (TIMER32_1_BASE, true);
     attacker->timerStart = Timer32_getValue(TIMER32_1_BASE);//gets timer value
 }
@@ -182,11 +182,11 @@ void attack(character *attacker){
 void checkAttackTimer(character * player, Graphics_Context * g_sContext) {
     if(player->attacking) {
     	P2OUT=0x50; //turns on a yellow LED to indicate attacking
-        int final = (player->timerStart - Timer32_getValue(TIMER32_1_BASE))/100000;
-        char mystring[10];
+        /* for bug testing displays how much is left on the attack timer
+    	char mystring[10];
         snprintf(mystring, 10, "%d", Timer32_getValue(TIMER32_1_BASE));
         Graphics_drawString(g_sContext, (int8_t*)mystring, AUTO_STRING_LENGTH, 0, 10, 1);
-
+		*/
         if(Timer32_getValue(TIMER32_1_BASE) <= 0) {
         	P2OUT=0x00;
             player->attacking = 0;

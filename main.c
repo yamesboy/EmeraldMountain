@@ -247,7 +247,7 @@ int level1(Graphics_Context* g_sContext, character * player){
         	spawnTreasure(g_sContext, &Gem1, 44, 30);
         	spawnTreasure(g_sContext, &Gem2, 74, 30);
 
-        	spawned = 1;
+        	spawned = 1; //prevents treasure from infinitely spawning
         }
         checkIfOverlapTreasure(g_sContext, player, &Gem1); //checks for gem overlap and adds score if true
         checkIfOverlapTreasure(g_sContext, player, &Gem2); //checks for gem overlap and adds score if true
@@ -271,7 +271,7 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
     treasure Gem4 = init_Treasure(1200, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
     treasure Gem5 = init_Treasure(1500, Emerald100004BPP_UNCOMP, GemBackground00004BPP_UNCOMP);
 
-    character BossSlime = init_Character(3, 120, 120, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
+    character BossSlime = init_Character(3, 100, 100, SlimeBig00004BPP_UNCOMP, SlimeBigBackground00004BPP_UNCOMP, Monster);
 
 	drawScore(g_sContext);
 	//level loop
@@ -295,7 +295,7 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
         	spawnTreasure(g_sContext, &Gem4, 69, 25);
         	spawnTreasure(g_sContext, &Gem5, 79, 25);
 
-        	spawned = 1;
+        	spawned = 1; //prevents treasure from infinitely spawning
         }
         checkIfOverlapTreasure(g_sContext, player, &Gem1); //checks for gem overlap and adds score if true
         checkIfOverlapTreasure(g_sContext, player, &Gem2); //checks for gem overlap and adds score if true
