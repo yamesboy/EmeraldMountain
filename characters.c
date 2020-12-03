@@ -150,7 +150,15 @@ void isHit(Graphics_Context *g_sContext, character * character) {
 		Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
 	}
 	if(character->cType == Monster) {
+		P2OUT=0x10; //green led flash
+		delay(10000000);
+		P2OUT=0x00;
 
+		character->hearts = character->hearts - 1;
+
+		if(character->hearts <= 0)
+			character->active = 0;
+			Graphics_drawImage(g_sContext, &character->background, character->xPos, character->yPos);
 	}
 
 }
