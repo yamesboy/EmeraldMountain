@@ -240,9 +240,9 @@ int level1(Graphics_Context* g_sContext, character * player){
         moveMonster(g_sContext, player, &Slime2); //monster movement mechanic
 
         if(!(P5IN & 0x02)) {//check button for miner's attack radius
-            attack(&Miner);
+            attack(player);
         }
-        checkAttackTimer(&Miner, &g_sContext);
+        checkAttackTimer(player, g_sContext);
 
         if(checkIfOverlap(player, &Slime1) || checkIfOverlap(player, &Slime2)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
@@ -285,9 +285,9 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
         moveMonster(g_sContext, player, &BossSlime); //monster movement mechanic
 
         if(!(P5IN & 0x02)) { //check button for miner's attack radius
-            attack(&Miner);
+            attack(player);
         }
-        checkAttackTimer(&Miner, &g_sContext);
+        checkAttackTimer(player, g_sContext);
 
         if(checkIfOverlap(player, &BossSlime)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with monsters

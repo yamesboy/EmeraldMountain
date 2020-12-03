@@ -23,6 +23,8 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     new_character.cType = cType;
     new_character.active = 1;
     new_character.moveDelay = 0;
+    new_character.attacking = 0;
+    new_character.timerStart = 0;
 
     return new_character;
 }
@@ -156,20 +158,35 @@ void isHit(Graphics_Context *g_sContext, character * character) {
 
 		character->hearts = character->hearts - 1;
 
-		if(character->hearts <= 0)
+		if(character->hearts <= 0){
 			character->active = 0;
 			Graphics_drawImage(g_sContext, &character->background, character->xPos, character->yPos);
+		}
 	}
 
 }
 
-void checkAttackTimer(character * player, Graphics_Context* g_sContext){
+void attack(character *attacker){
+    Timer32_haltTimer(TIMER32_1_BASE);
+    attacker->attacking = 1;
+    Timer32_startTimer (TIMER32_1_BASE, true);
+    attacker->timerStart = Timer32_getValue(TIMER32_1_BASE);
+}
+void checkAttackTimer(character * player, Graphics_Context * g_sContext) {
+    if(player->attacking) {
+        int final = (player->timerStart - Timer32_getValue(TIMER32_1_BASE))/3000000.0;
+        char mystring[10];
+        snprintf(mystring, 10, "%d", final);
+        Graphics_drawString(g_sContext, (int8_t*)mystring, AUTO_STRING_LENGTH, 0, 5, 1);
 
+        if(final > 10.0) {
+            player->attacking = 0;
+            player->timerStart = 0;
+            Timer32_haltTimer(TIMER32_1_BASE);
+        }
+    }
 }
 
-void attack(character* player){
-
-}
 
 void spawnEnemy(Graphics_Context* g_sContext, character * character, int xPos, int yPos){
     //update treasure's location

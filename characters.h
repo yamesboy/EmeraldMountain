@@ -20,6 +20,8 @@ typedef struct character{
     int attackRadius;
     int active;
     int moveDelay;
+    int attacking;
+    int timerStart;
     Graphics_Image image; //for sprites
     Graphics_Image background; //for the background of the sprite
     enum CharacterType cType;
@@ -37,7 +39,7 @@ void spawnEnemy(Graphics_Context * g_sContext, character * character, int xCoord
 int nextRoom(Graphics_Context *g_sContext, character * character);
 void delay(uint32_t duration_us);
 void checkAttackTimer(character * player, Graphics_Context* g_sContext);
-void attack(character* player);
+void attack(character* attacker);
 
 
 #endif /* CHARACTERS_H_ */
