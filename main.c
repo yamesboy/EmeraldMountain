@@ -58,6 +58,11 @@ int main(void){
 	P2->SEL1 &= ~0x40; //set P2.6 as simple  GPIO
 	P2->SEL0 &= ~0x40; // set P2.6 as simple  GPIO
 	P2->DIR |= 0x40; // set P2.6 as output
+	// set green LED as output
+	P2->SEL1 &= ~0x10; //set P2.4 as simple  GPIO
+	P2->SEL0 &= ~0x10; // set P2.4 as simple  GPIO
+	P2->DIR |= 0x10; // set P2.4 as output
+
 
 	//initialize joystick
 	InitJoyStick();
@@ -234,6 +239,11 @@ int level1(Graphics_Context* g_sContext, character * player){
         moveMonster(g_sContext, player, &Slime1); //monster movement mechanic
         moveMonster(g_sContext, player, &Slime2); //monster movement mechanic
 
+        if(!(P5IN & 0x02)) {//check button for miner's attack radius
+            attack(&Miner);
+        }
+        checkAttackTimer(&Miner, &g_sContext);
+
         if(checkIfOverlap(player, &Slime1) || checkIfOverlap(player, &Slime2)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
         }
@@ -273,6 +283,11 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
 	while(!gameOver(g_sContext, player) && !levelOver){//if you die or complete the level, the while loop ends
         move(g_sContext, player, resultsBuffer); //player movement mechanic
         moveMonster(g_sContext, player, &BossSlime); //monster movement mechanic
+
+        if(!(P5IN & 0x02)) { //check button for miner's attack radius
+            attack(&Miner);
+        }
+        checkAttackTimer(&Miner, &g_sContext);
 
         if(checkIfOverlap(player, &BossSlime)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with monsters

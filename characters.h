@@ -36,7 +36,8 @@ void isHit(Graphics_Context *g_sContext, character * player);
 void spawnEnemy(Graphics_Context * g_sContext, character * character, int xCoord, int yCoord);
 int nextRoom(Graphics_Context *g_sContext, character * character);
 void delay(uint32_t duration_us);
-
+void checkAttackTimer(character * player, Graphics_Context* g_sContext);
+void attack(character* player);
 
 
 #endif /* CHARACTERS_H_ */

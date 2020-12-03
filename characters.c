@@ -163,6 +163,14 @@ void isHit(Graphics_Context *g_sContext, character * character) {
 
 }
 
+void checkAttackTimer(character * player, Graphics_Context* g_sContext){
+
+}
+
+void attack(character* player){
+
+}
+
 void spawnEnemy(Graphics_Context* g_sContext, character * character, int xPos, int yPos){
     //update treasure's location
     character->xPos = xPos;
