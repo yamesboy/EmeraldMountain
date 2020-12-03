@@ -208,7 +208,6 @@ void titleScreen(Graphics_Context* g_sContext){
 int gameOver(Graphics_Context* g_sContext, character * player){
 	if(player->hearts <= 0){ //you lost
 
-		extern Graphics_Image max88PP_UNCOMP;
 		extern tImage EndScreen00004BPP_UNCOMP;
 		Graphics_drawImage(g_sContext, &EndScreen00004BPP_UNCOMP, 0, 0); //draws end screen
 
@@ -241,7 +240,7 @@ int level1(Graphics_Context* g_sContext, character * player){
 
         if(!Slime1.active && !Slime2.active && !spawned){ //if enemies are gone, spawn treasure
         	spawnTreasure(g_sContext, &Gem1, 44, 30);
-        	spawnTreasure(g_sContext, &Gem2, 54, 30);
+        	spawnTreasure(g_sContext, &Gem2, 74, 30);
 
         	spawned = 1;
         }
@@ -254,6 +253,9 @@ int level1(Graphics_Context* g_sContext, character * player){
 }
 
 int bossLevel(Graphics_Context* g_sContext, character * player){
+	extern tImage FinalLevel00004BPP_UNCOMP;
+	Graphics_drawImage(g_sContext, &FinalLevel00004BPP_UNCOMP, 0, 0); //draws final level screen
+
 	int levelOver = 0; //flag for handling when a level is over
 	int spawned = 0;//for handling when treasure has already been spawned
 
@@ -273,15 +275,15 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
         moveMonster(g_sContext, player, &BossSlime); //monster movement mechanic
 
         if(checkIfOverlap(player, &BossSlime)){
-        	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
+        	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with monsters
         }
 
         if(!BossSlime.active && !spawned){ //if boss is gone, spawn treasure
-        	spawnTreasure(g_sContext, &Gem1, 44, 30);
-        	spawnTreasure(g_sContext, &Gem2, 54, 30);
-        	spawnTreasure(g_sContext, &Gem3, 64, 30);
-        	spawnTreasure(g_sContext, &Gem4, 74, 30);
-        	spawnTreasure(g_sContext, &Gem5, 84, 30);
+        	spawnTreasure(g_sContext, &Gem1, 39, 25);
+        	spawnTreasure(g_sContext, &Gem2, 49, 25);
+        	spawnTreasure(g_sContext, &Gem3, 59, 25);
+        	spawnTreasure(g_sContext, &Gem4, 69, 25);
+        	spawnTreasure(g_sContext, &Gem5, 79, 25);
 
         	spawned = 1;
         }
