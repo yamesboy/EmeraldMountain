@@ -22,6 +22,7 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     new_character.background = spriteBackground;
     new_character.cType = cType;
     new_character.active = 1;
+    new_character.moveDelay = 0;
 
     return new_character;
 }
@@ -68,6 +69,11 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
 
 void moveMonster(Graphics_Context * g_sContext, character * player, character * monster){
     int xDir, yDir;
+    monster->moveDelay++;
+    if (monster->moveDelay < 30){
+        return;
+    }
+    monster->moveDelay = 0;
     // Follow the player.
     if (player->xPos < monster->xPos){
         xDir = left;

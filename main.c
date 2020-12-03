@@ -108,7 +108,6 @@ void delay_init(void) //timer initialization
     Timer32_disableInterrupt(TIMER32_0_BASE);
 }
 
-
 void InitJoyStick(void){
     /* Halting WDT and disabling master interrupts */
     MAP_WDT_A_holdTimer();
