@@ -54,15 +54,10 @@ int main(void){
 	P5->REN |= 0x02; //activate input pull resistors for p4.1
 	P5OUT |= 0x02; //assign resistors as pull up.
 
-	// set red LED as outputs
-	P2->SEL1 &= ~0x40; //set P2.6 as simple  GPIO
-	P2->SEL0 &= ~0x40; // set P2.6 as simple  GPIO
-	P2->DIR |= 0x40; // set P2.6 as output
-	// set green LED as output
-	P2->SEL1 &= ~0x10; //set P2.4 as simple  GPIO
-	P2->SEL0 &= ~0x10; // set P2.4 as simple  GPIO
-	P2->DIR |= 0x10; // set P2.4 as output
-
+	// set red, green, blue LED as outputs
+	P2->SEL1 &= ~0x70; //set P2 as simple  GPIO
+	P2->SEL0 &= ~0x70; // set P2 as simple  GPIO
+	P2->DIR |= 0x70; // set P2 as output
 
 	//initialize joystick
 	InitJoyStick();
