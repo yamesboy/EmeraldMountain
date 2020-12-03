@@ -233,8 +233,8 @@ int level1(Graphics_Context* g_sContext, character * player){
 	//level loop
 	while(!gameOver(g_sContext, player) && !levelOver){//if you die or complete the level, the while loop ends
         move(g_sContext, player, resultsBuffer); //player movement mechanic
-        //moveMonster(g_sContext, player, &Slime1); //monster movement mechanic
-        //moveMonster(g_sContext, player, &Slime2); //monster movement mechanic
+        moveMonster(g_sContext, player, &Slime1); //monster movement mechanic
+        moveMonster(g_sContext, player, &Slime2); //monster movement mechanic
 
         if(checkIfOverlap(player, &Slime1) || checkIfOverlap(player, &Slime2)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
@@ -271,13 +271,13 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
 	//level loop
 	while(!gameOver(g_sContext, player) && !levelOver){//if you die or complete the level, the while loop ends
         move(g_sContext, player, resultsBuffer); //player movement mechanic
-        //moveMonster(g_sContext, player, &BossSlime); //monster movement mechanic
+        moveMonster(g_sContext, player, &BossSlime); //monster movement mechanic
 
         if(checkIfOverlap(player, &BossSlime)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with
         }
 
-        if(BossSlime.active && !spawned){ //if boss is gone, spawn treasure
+        if(!BossSlime.active && !spawned){ //if boss is gone, spawn treasure
         	spawnTreasure(g_sContext, &Gem1, 44, 30);
         	spawnTreasure(g_sContext, &Gem2, 54, 30);
         	spawnTreasure(g_sContext, &Gem3, 64, 30);
