@@ -129,24 +129,29 @@ int checkIfOverlap(character * player, character * monster) {
     return false;
 }
 
-void isHit(Graphics_Context *g_sContext, character * player) {
-    P2OUT=0x40;
-    delay(10000000);
-    P2OUT=0x00;
+void isHit(Graphics_Context *g_sContext, character * character) {
+	if(character->cType == Player) {
+		P2OUT=0x40;
+		delay(10000000);
+		P2OUT=0x00;
 
-    Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
-    Graphics_drawImage(g_sContext, &player->background, player->xPos, player->yPos);
-    Graphics_setFont(g_sContext, &g_sFontFixed6x8); //set font and style
-    Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
+		Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
+		Graphics_drawImage(g_sContext, &character->background, character->xPos, character->yPos);
+		Graphics_setFont(g_sContext, &g_sFontFixed6x8); //set font and style
+		Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
 
-    player->hearts = player->hearts - 1;
-    player->xPos = 64;
-    player->yPos = 64;
+		character->hearts = character->hearts - 1;
+		character->xPos = 64;
+		character->yPos = 64;
 
-    delay(3*3000000);
+		delay(3*3000000);
 
-    Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_BROWN);
-    Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
+		Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_BROWN);
+		Graphics_drawString(g_sContext, (int8_t*)"-1 Heart", AUTO_STRING_LENGTH, 65, 5, 1);
+	}
+	if(character->cType == Monster) {
+
+	}
 
 }
 
