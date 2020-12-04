@@ -203,34 +203,37 @@ void spawnEnemy(Graphics_Context* g_sContext, character * character, int xPos, i
     character->yPos = yPos;
     //draw the treasure on the screen in the new location
     Graphics_drawImage(g_sContext, &character->image, character->xPos, character->yPos);
+
 }
 
 int nextRoom(Graphics_Context *g_sContext, character * character){
 	extern tImage  BasicMap00004BPP_UNCOMP;
 
-	if(character->xPos + character->xDir <= 4 && character->yPos + character->yDir <= 60 && character->yPos + character->yDir >= 50) //checks for left door
+	if(character->xPos + character->xDir <= 4 && character->yPos + character->yDir <= 66 && character->yPos + character->yDir >= 45) //checks for left door
     {
-        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
-        character->xPos = 64;
-        character->yPos = 64;
 
-        return 1; //move to new room
+           Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
+           character->xPos = 64;
+           character->yPos = 64;
+
+           return 1; //move to new room
     }
-	else if(character->yPos + character->yDir <= 5 && character->xPos + character->xDir <= 60 && character->xPos + character->xDir >= 50) //checks for top door
+	else if(character->yPos + character->yDir <= 5 && character->xPos + character->xDir <= 66 && character->xPos + character->xDir >= 45) //checks for top door
     {
-        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
-        character->xPos = 64;
-        character->yPos = 64;
+	        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
+	        character->xPos = 64;
+	        character->yPos = 64;
 
-        return 1; //move to new room
+	        return 1; //move to new room
     }
-	else if(character->xPos + character->xDir >= 124 && character->yPos + character->yDir <= 60 && character->yPos + character->yDir >= 50) //checks for right door
+	else if(character->xPos + character->xDir >= 100 && character->yPos + character->yDir <= 66 && character->yPos + character->yDir >= 45) //checks for right door
     {
-        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
-        character->xPos = 64;
-        character->yPos = 64;
 
-        return 1; //move to new room
+	        Graphics_drawImage(g_sContext, &BasicMap00004BPP_UNCOMP, 0, 0); //reset character and new room
+	        character->xPos = 64;
+	        character->yPos = 64;
+
+	        return 1; //move to new room
     }
 	else{
 		return 0; //did not move to new room
