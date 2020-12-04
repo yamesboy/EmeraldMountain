@@ -72,7 +72,7 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
 void moveMonster(Graphics_Context * g_sContext, character * player, character * monster){
     int xDir, yDir;
     monster->moveDelay++;
-    if (monster->moveDelay < 30 || !monster->active){
+    if (monster->moveDelay < 5 || !monster->active){
         return;
     }
     monster->moveDelay = 0;
