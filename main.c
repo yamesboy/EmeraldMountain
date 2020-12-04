@@ -188,7 +188,6 @@ void ADC14_IRQHandler(void)
  * progress to the first screen of the game
  */
 void titleScreen(Graphics_Context* g_sContext){
-	extern Graphics_Image max88PP_UNCOMP;
 	extern tImage titleScreen00004BPP_UNCOMP;
 	Graphics_drawImage(g_sContext, &titleScreen00004BPP_UNCOMP, 0, 0);
 
