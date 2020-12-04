@@ -174,7 +174,7 @@ void attack(character *attacker){
 	attacker->attacking = 1;
 	Timer32_haltTimer(TIMER32_1_BASE);
     MAP_Timer32_initModule(TIMER32_1_BASE, TIMER32_PRESCALER_1, TIMER32_32BIT, TIMER32_PERIODIC_MODE);
-    Timer32_setCount(TIMER32_1_BASE, 4*10000000); //gives maximum of about 1 sec
+    Timer32_setCount(TIMER32_1_BASE, 5*10000000); //gives maximum of about 1 sec
     Timer32_startTimer (TIMER32_1_BASE, true);
     attacker->timerStart = Timer32_getValue(TIMER32_1_BASE);//gets timer value
 }

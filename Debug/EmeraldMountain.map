@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.1                     
 ******************************************************************************
->> Linked Thu Dec  3 17:45:29 2020
+>> Linked Thu Dec  3 18:03:06 2020
 
 OUTPUT FILE NAME:   <EmeraldMountain.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000ce05
@@ -301,7 +301,7 @@ MODULE SUMMARY
     +--+----------------------------------------------------+-------+---------+---------+
        Total:                                               2780    960       2048   
                                                                                      
-    C:\ti\ccs1011\ccs\tools\compiler\ti-cgt-arm_20.2.1.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+    C:\ti\ccs1010\ccs\tools\compiler\ti-cgt-arm_20.2.1.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
        _printfi.c.obj                                       4851    0         0      
        fd_add_t2.asm.obj                                    438     0         0      
        fd_div_t2.asm.obj                                    310     0         0      
