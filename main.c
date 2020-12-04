@@ -459,6 +459,8 @@ int bossLevel(Graphics_Context* g_sContext, character * player){
 
         if(checkIfOverlap(g_sContext, player, &BossSlime)){
         	isHit(g_sContext, player); //logic to subtract hearts when coming in contact with monsters
+        	BossSlime.xPos -= 20*player->xDir; //draw the boss farther away from player if they get hit
+        	BossSlime.yPos -= 20*player->yDir;
         }
 
         if(!BossSlime.active && !spawned){ //if boss is gone, spawn treasure
