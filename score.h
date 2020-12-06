@@ -2,7 +2,7 @@
  * score.h
  *
  *  Created on: Nov 30, 2020
- *      Author: James Hurst
+ *      Author: Jamesh
  */
 
 #ifndef SCORE_H_

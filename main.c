@@ -4,6 +4,9 @@
 // Authors:
 // EE334 2020
 // James Hurst, Paul, Justin, Kyle, Anthony
+// This project is a game that can be played using the LCD display, joystick, and button S1.
+// The game runs in main.c, it plays through all the levels until the player loses or the
+// player finishes all the levels.
 //
 //****************************************************************************
 
@@ -74,7 +77,7 @@ int main(void){
     titleScreen(&g_sContext); //prints the title screen and waits for input from the button to continue
 
     drawScore(&g_sContext);
-    //Ready for gameloop below:
+    //Game loop below:
     while(!gameOver(&g_sContext, &Miner)){
     	level1(&g_sContext, &Miner);
         delay(100000);
@@ -95,7 +98,10 @@ int main(void){
     return 1;
 }
 
-
+/*
+ * Init_Graph
+ * Initializes the LCD display and graphics context
+ */
 void Init_Graph(Graphics_Context* g_sContext_f) //Initializing the graphics
 {
     // Initialize the LCD
@@ -114,12 +120,20 @@ void Init_Graph(Graphics_Context* g_sContext_f) //Initializing the graphics
     Graphics_clearDisplay(g_sContext_f);
 }
 
+/*
+ * delay_init
+ * initializes delay function
+ */
 void delay_init(void) //timer initialization
 {
     Timer32_initModule(TIMER32_0_BASE, TIMER32_PRESCALER_1, TIMER32_32BIT, TIMER32_PERIODIC_MODE);
     Timer32_disableInterrupt(TIMER32_0_BASE);
 }
 
+/*
+ * InitJoyStick
+ * Initializes the joy-stick and enables interrupts
+ */
 void InitJoyStick(void){
     /* Halting WDT and disabling master interrupts */
     MAP_WDT_A_holdTimer();

@@ -10,6 +10,10 @@
 	enum xDir { right = 1, left = -1};
 	enum yDir { up = -1, down = 1};
 
+/*
+ * init_Character
+ * initializes a new character with all it's parameters, returns the character
+ */
 character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image sprite, Graphics_Image spriteBackground, enum CharacterType cType){
     character new_character;
 
@@ -29,6 +33,11 @@ character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_
     return new_character;
 }
 
+/*
+ * move
+ * moves the character based on where the joy stick is
+ * by adding to the character's position the direction of the joy stick
+ */
 void move(Graphics_Context* g_sContext, character * character, uint16_t * resultsBuffer){
 	//declare 2 ints to store which direction the character is moving
 	int xDir, yDir;
@@ -69,6 +78,11 @@ void move(Graphics_Context* g_sContext, character * character, uint16_t * result
     }
 }
 
+/*
+ * moveMonster
+ * moves the monster character towards the player
+ * based on both their locations
+ */
 void moveMonster(Graphics_Context * g_sContext, character * player, character * monster){
     int xDir, yDir;
     monster->moveDelay++;
@@ -98,6 +112,10 @@ void moveMonster(Graphics_Context * g_sContext, character * player, character * 
 
 }
 
+/*
+ * movePossible
+ * performs bounds checking to check if a move is possible given a direction
+ */
 int movePossible(character * character, int xpos, int ypos){
     // Check if space is occupied!
     if (character->xPos + xpos > 100 && xpos == right){
@@ -116,7 +134,12 @@ int movePossible(character * character, int xpos, int ypos){
 
 }
 
-//Returns 1 if player hitbox contains monster->x,y
+/*
+ * checkIfOverlap
+ * checks the box around a player to see if another character's
+ * coordinates are overlapping,
+ * Returns 1 if player hitbox contains monster->x,y
+ */
 int checkIfOverlap(Graphics_Context *g_sContext, character * player, character * monster) {
     int minPlayerX = player->xPos-19;
     int maxPlayerX = player->xPos+25;
@@ -135,6 +158,13 @@ int checkIfOverlap(Graphics_Context *g_sContext, character * player, character *
     return false;
 }
 
+/*
+ * isHit
+ * checks to see if the character is a player or a monster,
+ * subtracts from the character's hearts
+ * displays a red LED if the player is hit,
+ * displays a green LED if the monster is hit
+ */
 void isHit(Graphics_Context *g_sContext, character * character) {
 	if(character->cType == Player) {
 		P2OUT=0x40;
@@ -170,6 +200,10 @@ void isHit(Graphics_Context *g_sContext, character * character) {
 
 }
 
+/*
+ * attack
+ * Ready's the character's attack flag and starts a timer for 1 sec
+ */
 void attack(character *attacker){
 	attacker->attacking = 1;
 	Timer32_haltTimer(TIMER32_1_BASE);
@@ -179,6 +213,12 @@ void attack(character *attacker){
     attacker->timerStart = Timer32_getValue(TIMER32_1_BASE);//gets timer value
 }
 
+/*
+ * checkAttackTimer
+ * Checks the character's timer to see if the attack time is passed
+ * disables the character's attack flag if the timer is up
+ * Displays a yellow LED while the attack flag is active
+ */
 void checkAttackTimer(character * player, Graphics_Context * g_sContext) {
     if(player->attacking) {
     	P2OUT=0x50; //turns on a yellow LED to indicate attacking
@@ -196,16 +236,24 @@ void checkAttackTimer(character * player, Graphics_Context * g_sContext) {
     }
 }
 
-
+/*
+ * spawnEnemy
+ * spawn's a monster at a given x and y position on the display
+ */
 void spawnEnemy(Graphics_Context* g_sContext, character * character, int xPos, int yPos){
-    //update treasure's location
+    //update enemies location
     character->xPos = xPos;
     character->yPos = yPos;
-    //draw the treasure on the screen in the new location
+    //draw the enemy on the screen in the new location
     Graphics_drawImage(g_sContext, &character->image, character->xPos, character->yPos);
 
 }
 
+/*
+ * nextRoom
+ * performs bounds checking to see if a character has moved to a doorframe
+ * if so it draws a new map and resets the character's x and y position
+ */
 int nextRoom(Graphics_Context *g_sContext, character * character){
 	extern tImage  BasicMap00004BPP_UNCOMP;
 
@@ -240,6 +288,10 @@ int nextRoom(Graphics_Context *g_sContext, character * character){
 	}
 }
 
+/*
+ * delay
+ * delay function in microseconds
+ */
 void delay(uint32_t duration_us) //delay function in u sec
 {
     Timer32_haltTimer(TIMER32_0_BASE);

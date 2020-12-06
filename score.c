@@ -2,18 +2,26 @@
  * score.c
  *
  *  Created on: Nov 30, 2020
- *      Author: Yamesboy
+ *      Author: Jamesh
  */
 #include "score.h"
 
 static int totalScore = 0; //creates global variable total score to hold the player's score
 
-//calculates the new score when a player picks up a gem
+/*
+ * calcScore
+ * calculates the new score when a player picks up a gem
+ */
 void calcScore(treasure * gem){
 	totalScore += gem->value;
 	gem->active = 0; //deactivates treasure
 	return;
 }
+
+/*
+ * drawScore
+ * draws the player's current score in the top left corner
+ */
 void drawScore(Graphics_Context* g_sContext){
 	//draw the score on the screen
 	Graphics_setForegroundColor(g_sContext, GRAPHICS_COLOR_WHITE);
@@ -24,6 +32,10 @@ void drawScore(Graphics_Context* g_sContext){
 	Graphics_drawString(g_sContext, (int8_t*)score, AUTO_STRING_LENGTH, 0, 0, 1);
 }
 
+/*
+ * init_Treasure
+ * initializes a new treasure object and returns it
+ */
 treasure init_Treasure(int value, Graphics_Image sprite, Graphics_Image spriteBackground){
 	treasure newTreasure;
 
@@ -36,6 +48,12 @@ treasure init_Treasure(int value, Graphics_Image sprite, Graphics_Image spriteBa
 
 	return newTreasure;
 }
+
+/*
+ * SpawnTreasure
+ * takes in the pointer to a treasure object,
+ * spawns it at the passed in x and y coords
+ */
 void spawnTreasure(Graphics_Context* g_sContext, treasure* treasure, int xPos, int yPos){
 	//update treasure's location
 	treasure->xPos = xPos;
@@ -45,7 +63,10 @@ void spawnTreasure(Graphics_Context* g_sContext, treasure* treasure, int xPos, i
 	Graphics_drawImage(g_sContext, &treasure->image, treasure->xPos, treasure->yPos);
 }
 
-//adds treasure value if player radius contains treasure->x,y
+/*
+ * checkIfOverlapTreasure
+ * adds treasure value if player radius contains treasure->x,y
+ */
 void checkIfOverlapTreasure(Graphics_Context* g_sContext, character * player, treasure * treasure) {
     //creates pick-up range
 	int minPlayerX = player->xPos-15;

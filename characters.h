@@ -2,7 +2,7 @@
  * characters.h
  *
  *  Created on: Nov 19, 2020
- *      Author: paulk
+ *      Author: paulk, jamesh
  */
 
 #ifndef CHARACTERS_H_
@@ -29,7 +29,6 @@ typedef struct character{
 }character;
 
 character init_Character(int max_hearts, int xSpawnPos, int ySpawnPos, Graphics_Image image, Graphics_Image spriteBackground, enum CharacterType cType);
-
 void move(Graphics_Context* g_sContext, character * character, uint16_t * resultsBuffer);
 int movePossible(character *character, int xpos, int ypos);
 void moveMonster(Graphics_Context * g_sContext, character * player, character * monster);
