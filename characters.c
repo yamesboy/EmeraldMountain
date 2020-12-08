@@ -1,6 +1,6 @@
 /*
  * characters.c
- *
+ * All the functions relating to characters and the map
  *  Created on: Nov 19, 2020
  *      Author: paulk, Jamesh, Kyle, Justin, Anthony
  */

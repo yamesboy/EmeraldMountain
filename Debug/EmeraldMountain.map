@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v20.2.1                     
 ******************************************************************************
->> Linked Sat Dec  5 22:36:12 2020
+>> Linked Tue Dec  8 11:04:50 2020
 
 OUTPUT FILE NAME:   <EmeraldMountain.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000d401

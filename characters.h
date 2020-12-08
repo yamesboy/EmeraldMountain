@@ -2,7 +2,7 @@
  * characters.h
  *
  *  Created on: Nov 19, 2020
- *      Author: paulk, jamesh
+ *      Author: paulk, Jamesh, Kyle, Justin, Anthony
  */
 
 #ifndef CHARACTERS_H_
